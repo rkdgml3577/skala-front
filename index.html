@@ -304,5 +304,57 @@
   <footer>
     <p>© 2026 SKALA-FRONT · Built by rkdgml3577</p>
   </footer>
+  <script>
+    /* ============================================================
+       JavaScript — 페이지에 동적 기능을 추가
+       ============================================================ */
+
+    // 모션 최소화를 원하는 사용자인지 확인 (접근성)
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ---------- 1) h1 타이핑 애니메이션 ----------
+       "환영 인사"를 한 글자씩 찍어서 등장시킴.
+       모션 최소화 사용자에게는 즉시 전체 텍스트를 보여줌. */
+    const typedEl = document.getElementById('typed');
+    const fullText = '환영 인사';
+    if (!reduceMotion) {
+      typedEl.textContent = '';          // 비우고 시작
+      let i = 0;
+      const timer = setInterval(() => {
+        typedEl.textContent += fullText[i];
+        i++;
+        if (i >= fullText.length) clearInterval(timer);  // 다 찍으면 멈춤
+      }, 180);
+    }
+
+    /* ---------- 2) 다크/라이트 테마 토글 ----------
+       버튼을 누르면 <html>의 data-theme 값을 바꿔 CSS 변수를 교체. */
+    const themeBtn = document.getElementById('themeBtn');
+    const htmlEl = document.documentElement;   // <html> 요소
+    themeBtn.addEventListener('click', () => {
+      const isLight = htmlEl.getAttribute('data-theme') === 'light';
+      if (isLight) {
+        htmlEl.removeAttribute('data-theme');  // 다크로
+        themeBtn.textContent = '🌙 테마';
+      } else {
+        htmlEl.setAttribute('data-theme', 'light');  // 라이트로
+        themeBtn.textContent = '☀️ 테마';
+      }
+    });
+
+    /* ---------- 3) 실시간 시계 ----------
+       1초마다 현재 시각을 HH:MM:SS 형식으로 갱신. */
+    const clockEl = document.getElementById('clock');
+    function updateClock() {
+      const now = new Date();
+      // padStart: 한 자리 숫자 앞에 0을 붙여 두 자리로 맞춤 (예: 9 → 09)
+      const hh = String(now.getHours()).padStart(2, '0');
+      const mm = String(now.getMinutes()).padStart(2, '0');
+      const ss = String(now.getSeconds()).padStart(2, '0');
+      clockEl.textContent = `${hh}:${mm}:${ss}`;
+    }
+    updateClock();                    // 즉시 한 번 표시
+    setInterval(updateClock, 1000);   // 이후 1초마다 갱신
+  </script>
 </body>
 </html>
