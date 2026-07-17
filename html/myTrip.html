@@ -59,6 +59,17 @@
     }
     figcaption { padding: 0.9rem 1.1rem; color: var(--text-dim); font-size: 0.95rem; }
     figcaption strong { color: var(--text); }
+    .trip-card {
+        background-color: var(--bg-2);        /* 배경색 */
+        border: 1px solid var(--border);      /* 테두리 */
+        border-left: 4px solid var(--cyan);   /* 왼쪽 포인트 (리뷰 느낌) */
+        border-radius: 10px;
+        padding: 1rem 1.2rem;                 /* 안쪽 여백 */
+        margin: 0 1.1rem 1.1rem;              /* 바깥 여백 (좌우+아래) */
+        color: var(--text-dim);
+        font-size: 0.9rem;
+        line-height: 1.6;
+        }
     .player {
       margin-top: 1.5rem; padding: 1.2rem 1.4rem;
       background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
@@ -120,14 +131,23 @@
             <figure>
             <img src="../media/paris.jpg" alt="파리의 길거리 풍경" />
             <figcaption><strong>파리</strong> (2018년)</figcaption>
+            <p class="trip-card">
+                 골목마다 카페가 있고 걷는 재미가 있던 도시. 에펠탑 야경이 특히 기억에 남는다. ⭐⭐⭐⭐⭐
+            </p>    
             </figure>
             <figure>
             <img src="../media/cambodia.jpg" alt="캄보디아 공항 도착 사진" />
             <figcaption><strong>캄보디아</strong> (2023년)</figcaption>
+            <p class="trip-card">
+                앙코르와트의 웅장함에 압도된 여행. 더위는 힘들었지만 그만한 가치가 있었다. ⭐⭐⭐⭐
+            </p>    
             </figure>
             <figure>
             <img src="../media/kyoto.jpg" alt="교토의 길거리 풍경" />
             <figcaption><strong>교토</strong> (2024년)</figcaption>
+                <p class="trip-card">
+                   전통과 현대가 어우러진 거리. 기요미즈데라에서 본 풍경이 잊히지 않는다. ⭐⭐⭐⭐⭐
+                </p>
             </figure>
         </section>
 
