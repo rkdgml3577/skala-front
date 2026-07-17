@@ -35,7 +35,7 @@
     }
     figure {
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: 16px; overflow: hidden; margin-bottom: 1.5rem;
+      border-radius: 16px; overflow: hidden; margin-bottom: 0rem;
       opacity: 0; transform: translateY(24px);
       transition: opacity 0.7s ease, transform 0.7s ease;
     }
@@ -98,6 +98,20 @@
     .time { font-size: 0.75rem; color: var(--text-dim); font-variant-numeric: tabular-nums; flex-shrink: 0; }
     footer { text-align: center; color: var(--text-dim); font-size: 0.85rem; margin-top: 2rem; }
     footer a { color: var(--accent-2); }
+    .photo-grid {
+        display: grid;                            /* 그리드 켜기 */
+        grid-template-columns: repeat(3, 1fr);   /* 3열, 각 열 균등 */
+        gap: 1.2rem;                             /* 칸 사이 간격 */
+        align-items: start;                      /* 카드 높이 다를 때 위 정렬 */
+    }
+
+        /* 반응형: 좁은 화면에선 열 줄이기 */
+    @media (max-width: 700px) {
+        .photo-grid { grid-template-columns: repeat(2, 1fr); }   /* 2열 */
+    }
+    @media (max-width: 460px) {
+        .photo-grid { grid-template-columns: 1fr; }              /* 1열 */
+    }
   </style>
 </head>
 <body>
@@ -127,28 +141,30 @@
         <!-- 사진 갤러리 -->
         <section>
             <h2>📷 여행 사진</h2>
-            <!-- 필수: img -->
-            <figure>
-            <img src="../media/paris.jpg" alt="파리의 길거리 풍경" />
-            <figcaption><strong>파리</strong> (2018년)</figcaption>
-            <p class="trip-card">
-                 골목마다 카페가 있고 걷는 재미가 있던 도시. 에펠탑 야경이 특히 기억에 남는다. ⭐⭐⭐⭐⭐
-            </p>    
-            </figure>
-            <figure>
-            <img src="../media/cambodia.jpg" alt="캄보디아 공항 도착 사진" />
-            <figcaption><strong>캄보디아</strong> (2023년)</figcaption>
-            <p class="trip-card">
-                앙코르와트의 웅장함에 압도된 여행. 더위는 힘들었지만 그만한 가치가 있었다. ⭐⭐⭐⭐
-            </p>    
-            </figure>
-            <figure>
-            <img src="../media/kyoto.jpg" alt="교토의 길거리 풍경" />
-            <figcaption><strong>교토</strong> (2024년)</figcaption>
+            <div class="photo-grid"> 
+                <!-- 필수: img --> 
+                <figure>
+                <img src="../media/paris.jpg" alt="파리의 길거리 풍경" />
+                <figcaption><strong>파리</strong> (2018년)</figcaption>
                 <p class="trip-card">
-                   전통과 현대가 어우러진 거리. 기요미즈데라에서 본 풍경이 잊히지 않는다. ⭐⭐⭐⭐⭐
-                </p>
-            </figure>
+                    골목마다 카페가 있고 걷는 재미가 있던 도시. 에펠탑 야경이 특히 기억에 남는다. ⭐⭐⭐⭐⭐
+                </p>    
+                </figure>
+                <figure>
+                <img src="../media/cambodia.jpg" alt="캄보디아 공항 도착 사진" />
+                <figcaption><strong>캄보디아</strong> (2023년)</figcaption>
+                <p class="trip-card">
+                    앙코르와트의 웅장함에 압도된 여행. 더위는 힘들었지만 그만한 가치가 있었다. ⭐⭐⭐⭐
+                </p>    
+                </figure>
+                <figure>
+                <img src="../media/kyoto.jpg" alt="교토의 길거리 풍경" />
+                <figcaption><strong>교토</strong> (2024년)</figcaption>
+                    <p class="trip-card">
+                    전통과 현대가 어우러진 거리. 기요미즈데라에서 본 풍경이 잊히지 않는다. ⭐⭐⭐⭐⭐
+                    </p>
+                </figure>
+            </div>
         </section>
 
         <!-- 비디오 -->
