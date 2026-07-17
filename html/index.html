@@ -79,6 +79,27 @@
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+#brand { z-index: 90; }
+#brand .subtitle {
+  color: #7b5cff; font-weight: 700; font-size: 1.4rem;
+  margin-bottom: 1rem; opacity: 0;
+  animation: fadeInUp 0.8s ease 0.2s forwards;
+}
+#brand .skala {
+  font-size: clamp(4rem, 15vw, 11rem); font-weight: 800;
+  letter-spacing: 0.02em; color: #fff; line-height: 1;
+  opacity: 0; animation: fadeInUp 1s ease 0.4s forwards;
+}
+#brand .skala .accent { color: #7b5cff; }
+#brand .caption {
+  margin-top: 1rem; font-size: 1.5rem; font-weight: 700;
+  color: var(--text-dim); letter-spacing: 0.3em;
+  opacity: 0; animation: fadeInUp 1s ease 0.7s forwards;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
       #main-content { min-height: 100vh; display: flex; flex-direction: column; }
       font-family: var(--font);
       background: var(--bg);
@@ -325,6 +346,11 @@
       <div class="progress-fill"></div>
     </div>
     <p class="tagline">AI 시대, 미래 인재로 성장하는 길</p>
+  </div>
+  <div class="screen hidden" id="brand">
+    <p class="subtitle">SK그룹 채용연계과정</p>
+    <div class="skala">SK<span class="accent">A</span>LA</div>
+    <p class="caption">SK AI</p>
   </div>
   <div id ="main-content">
     <!-- 시맨틱 태그: 페이지 상단 영역 -->
