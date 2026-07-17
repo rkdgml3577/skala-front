@@ -9,6 +9,7 @@ HTML 기초부터 CSS 레이아웃, JavaScript DOM/비동기/모듈까지의 과
 ---
 
 ## 📂 프로젝트 구조
+```text
 SKALA-FRONT/
 ├── html/          # 페이지 (index가 Hub 역할)
 │   ├── index.html         # 메인 Hub — 인트로, 바로가기, 소식, 사이드바 위젯
@@ -27,6 +28,7 @@ SKALA-FRONT/
 │   ├── weatherAPI.js      # 날씨 데이터 모듈 (export, fetch — DOM 코드 없음)
 │   └── realtimeInfo.js    # 날씨 화면 모듈 (import, DOM/이벤트 전담)
 └── media/                 # 사진·음악·영상 (H.264 변환본)
+```
 ---
 
 ## 📄 페이지 & 과제 매핑
