@@ -169,22 +169,24 @@
     .theme-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
     /* [기본 요구사항] main + aside 2단 레이아웃 (Hub 과제) */
-    .layout {
+      .layout {
       position: relative; z-index: 1;
-      width: 100%; 
+      width: 100%;
+      max-width: 1200px;        /* 본문(860) + 간격(2rem) + 사이드바(280) ≈ 1172px */
+      margin: 0 auto;           /* ← 가운데 정렬의 핵심: 좌우 여백 자동 균등 */
       padding: 2rem;
-      display: grid;
-      grid-template-columns: 1fr min(860px, 100%) 1fr;  /* 여백 | 본문 | 여백 (대칭) */
-      flex: 1;
+      display: flex;
+      gap: 2rem;                /* 본문-사이드바 간격 (margin-left 대신 이걸로) */
+      align-items: flex-start;
     }
-    main { grid-column: 2; }
+    main {
+      flex: 1;                  /* 남는 공간 흡수 */
+      min-width: 0;             /* 긴 내용이 있어도 칸을 안 터뜨림 */
+    }
     aside {
-      grid-column: 3;          /* 오른쪽 여백 칸에 */
-      justify-self: start;     /* 그 칸의 왼쪽(본문 바로 옆)에 붙임 */
-      width: 280px;
-      margin-left: 2rem;       /* 본문과의 간격 */
+      flex: 0 0 280px;          /* 고정 280px (안 늘고 안 줄고) */
       display: flex; flex-direction: column; gap: 1.5rem;
-      align-self: start;
+      align-self: flex-start;   /* sticky 작동 조건 */
       position: sticky; top: 2rem;   /* [추가 실습] 스크롤 따라오는 사이드바 */
     }
     .widget {
@@ -381,6 +383,22 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before { animation: none !important; transition: none !important; }
     }
+       .hero {
+      position: relative; z-index: 1;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+    }
+    /* [존 구분] 히어로 아래 그라디언트 디바이더 — 인트로 색과 연결되는 시그니처 */
+    .hero::after {
+      content: "";
+      display: block;
+      width: 120px; height: 3px;
+      margin: 3rem auto 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #7b5cff, var(--accent-2));
+    }
   </style>
   
 </head>
@@ -414,20 +432,17 @@
       <button class="theme-btn" id="themeBtn" aria-label="화면 테마 전환">🌙 테마</button>
     </header>
 
-    <!-- 시맨틱 태그: 핵심 콘텐츠 영역 -->
-    <div class="layout">
+    <!-- 시맨틱 태그: 핵심 콘텐츠 영역 -->      
+    <!-- 환영 섹션 -->
+    <section id="welcome" class="hero" aria-label="환영 및 바로가기">
+      <p class="eyebrow">SK AI Academy</p>
 
-      <main>
-        <!-- 환영 섹션 -->
-        <section id="welcome">
-          <p class="eyebrow">SK AI Academy</p>
+      <!-- [기본 요구사항] h1 "환영 인사" -->
+      <h1><span id="typed">KangHee's Universe</span><span class="cursor" aria-hidden="true"></span></h1>
 
-          <!-- [기본 요구사항] h1 "환영 인사" -->
-          <h1><span id="typed">KangHee's Universe</span><span class="cursor" aria-hidden="true"></span></h1>
-
-          <!-- [기본 요구사항] 본문 p -->
-          <p class="lead">저의 프로필, 학습내용, 여행 기록을 모아둔 Hub 페이지입니다</p>
-          <nav class="shortcuts" aria-label="다른 페이지(파일)로 이동하는 메뉴">
+      <!-- [기본 요구사항] 본문 p -->
+      <p class="lead">저의 프로필, 학습내용, 여행 기록을 모아둔 Hub 페이지입니다</p>
+      <nav class="shortcuts" aria-label="다른 페이지(파일)로 이동하는 메뉴">
             <h2>바로가기</h2>
               <ul class="card-grid">
                 
@@ -457,8 +472,11 @@
                     <span class="card-file">signUp.html</span>
                   </a></li>
               </ul>
-          </nav>
-          <section id="news">
+      </nav>
+    </section>
+    <div class = "layout">
+      <main>
+        <section id="news">
             <h2>📌 오늘의 주요 소식</h2>
             <article>
               <h3>[업데이트] 여행 앨범에 동영상 추가 완료!</h3>
@@ -467,11 +485,8 @@
               <!-- time: 기계가 읽는 날짜(datetime) + 사람이 읽는 날짜(내용) 분리 -->
               <p><time datetime="2026-07-17">2026년 7월 17일</time> 작성</p>
             </article>
-          </section>
-        
         </section>
-        
-
+      
         <!-- 과정 소개 섹션: 목록으로 배우는 내용 안내 -->
         <section id="about">
           <h2>SKALA에서 배우는 것</h2>
@@ -523,7 +538,7 @@
     <footer>
       <p>© 2026 SKALA-FRONT · Built by rkdgml3577</p>
     </footer>
-  </div>
+    </div>
   <script>
     /* ============================================================
        JavaScript — 페이지에 동적 기능을 추가
