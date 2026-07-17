@@ -74,3 +74,24 @@ a:hover {
 .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; }
 .text-dim { color: var(--text-dim); }
 .highlight { background: linear-gradient(transparent 60%, rgba(46, 230, 198, 0.35) 60%); padding: 0 0.2rem; }
+.home-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.4rem;
+  background: rgba(255, 255, 255, 0.04);        /* 카드와 동일한 surface 톤 */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  color: #2ee6c6;                                /* 시안 — 링크 톤 유지 */
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.home-btn:hover {
+  transform: translateY(-3px);                   /* 바로가기 카드와 같은 리프트 */
+  border-color: #ff6a13;                         /* 호버 시 SK 오렌지 보더 (카드와 동일) */
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+  text-decoration: none;
+}
+.home-btn::before { content: "🏠"; } 

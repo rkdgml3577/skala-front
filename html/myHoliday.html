@@ -3,34 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>나의 휴일 일과</title>
+    <title>나의 휴일 일과 · SKALA</title>
     <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* ============================================================
+           myHoliday 전용 스타일 — 전역 토큰(style.css) 위에 페이지 스타일
+           ============================================================ */
+        body { padding: 2rem 1rem; }
+
+        .container {
+            position: relative; z-index: 1;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        /* 페이지 타이틀: 사이트 시그니처(그라디언트 텍스트) 적용 */
+        h1 {
+            text-align: center;
+            font-size: 2rem; font-weight: 800;
+            background: linear-gradient(120deg, var(--text), var(--cyan));
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent;
+            border-bottom: none;          /* 전역 h1의 오렌지 밑줄과 겹침 방지 */
+            margin-bottom: 2rem;
+        }
+
+        /* 시간대 섹션: 다른 페이지들과 같은 카드 톤 */
+        .time-block {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem 1.8rem;
+            margin-bottom: 1.5rem;        /* br 대신 여백은 CSS가 담당 */
+        }
+        .time-block h2 {
+            font-size: 1.15rem; color: var(--cyan);
+            margin-bottom: 1rem;
+        }
+        .time-block h2 u { text-decoration: none; }   /* 밑줄은 아래 보더가 대신 */
+
+        /* 일정 한 줄: 타임라인 느낌 — 시간 부분을 배지처럼 */
+        .time-block p {
+            display: flex; align-items: baseline; gap: 0.8rem;
+            padding: 0.45rem 0;
+            border-bottom: 1px dashed var(--border);
+            color: var(--text-dim);
+        }
+        .time-block p:last-child { border-bottom: none; }
+        .time-block b:first-child {
+            flex-shrink: 0;
+            font-variant-numeric: tabular-nums;       /* 시간 숫자 폭 통일 */
+            color: var(--accent-2);
+        }
+
+        /* mark 기본값(쨍한 노랑)은 다크 테마와 충돌 → 톤에 맞게 재정의 */
+        mark {
+            background: linear-gradient(transparent 55%, rgba(255, 106, 19, 0.35) 55%);
+            color: var(--text);
+            padding: 0 0.15em;
+        }
+
+        footer {
+            text-align: center; margin-top: 2.5rem;
+            color: var(--text-dim); font-size: 0.85rem;
+        }
+        footer a { color: var(--accent-2); }
+    </style>
 </head>
 <body>
     <div class="container">
 
-    <h1>🎉 나의 휴일 일과</h1>
-    <br>
+        <h1>🎉 나의 휴일 일과</h1>
 
-    <h2>🛏️ <u>느긋한 아침</u></h2>
-    <p><b>09:00</b> - 😴 늦잠 자는 행복</p>
-    <p><b>10:00</b> - 🍳 여유 있게 <mark>브런치</mark> 즐기기</p>
-    <p><b>11:00</b> - ☕ <b>커피 한 잔</b>과 음악 감상 🎵</p>
-    <br>
+        <!-- 시간대별 섹션을 카드로: br 대신 CSS margin이 간격 담당 -->
+        <section class="time-block">
+            <h2>🛏️ <u>느긋한 아침</u></h2>
+            <p><b>09:00</b> <span>😴 늦잠 자는 행복</span></p>
+            <p><b>10:00</b> <span>🍳 여유 있게 <mark>브런치</mark> 즐기기</span></p>
+            <p><b>11:00</b> <span>☕ <b>커피 한 잔</b>과 음악 감상 🎵</span></p>
+        </section>
 
-    <h2>🚶 <u>오후 활동</u></h2>
-    <p><b>13:00</b> - 🏞️ 공원 산책하며 <b>마음 정리</b></p>
-    <p><b>14:30</b> - 📷 사진 찍으며 <b>일상의 순간 기록</b></p>
-    <p><b>16:00</b> - 🛍️ 충동구매 대신 <mark>창의적인 쇼핑</mark></p>
-    <br>
+        <section class="time-block">
+            <h2>🚶 <u>오후 활동</u></h2>
+            <p><b>13:00</b> <span>🏞️ 공원 산책하며 <b>마음 정리</b></span></p>
+            <p><b>14:30</b> <span>📷 사진 찍으며 <b>일상의 순간 기록</b></span></p>
+            <p><b>16:00</b> <span>🛍️ 충동구매 대신 <mark>창의적인 쇼핑</mark></span></p>
+        </section>
 
-    <h2>🎬 <u>저녁과 밤</u></h2>
-    <p><b>18:00</b> - 🥘 <b>맛있는 저녁</b> 만들기</p>
-    <p><b>20:00</b> - 🎥 영화 감상 (코미디 추천 😂)</p>
-    <p><b>23:00</b> - 📖 짧은 독서 후 힐링 타임 🛁</p>
-    <br>
+        <section class="time-block">
+            <h2>🎬 <u>저녁과 밤</u></h2>
+            <p><b>18:00</b> <span>🥘 <b>맛있는 저녁</b> 만들기</span></p>
+            <p><b>20:00</b> <span>🎥 영화 감상 (코미디 추천 😂)</span></p>
+            <p><b>23:00</b> <span>📖 짧은 독서 후 힐링 타임 🛁</span></p>
+        </section>
 
-    <p>📅 휴일 버전 작성일: 2026년 7월</p>
+        <footer>
+            <p>📅 휴일 버전 작성일: <time datetime="2026-07">2026년 7월</time></p>
+            <p><a class="home-btn" href="index.html?skipIntro=1">홈(Hub)으로 돌아가기</a></p>
+        </footer>
 
     </div>
 </body>

@@ -3,62 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>나의 소개</title>
+    <title>나의 소개 · SKALA</title>
     <link rel="stylesheet" href="../css/style.css" />
+    <style>
+        /* ============================================================
+           myProfile 전용 스타일 — myHoliday와 동일 양식으로 통일
+           (컨테이너/타이틀/카드/줄 스타일 전부 같은 규칙)
+           ============================================================ */
+        body { padding: 2rem 1rem; }
+
+        .container {
+            position: relative; z-index: 1;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        /* 페이지 타이틀: myHoliday와 동일한 그라디언트 */
+        h1 {
+            text-align: center;
+            font-size: 2rem; font-weight: 800;
+            background: linear-gradient(120deg, var(--text), var(--cyan));
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent;
+            border-bottom: none;
+            margin-bottom: 0.6rem;
+        }
+        header > p { text-align: center; color: var(--text-dim); margin-bottom: 1.4rem; }
+
+        /* 목차 nav: 간단히 톤만 맞춤 */
+        nav[aria-label="목차"] { text-align: center; margin-bottom: 2rem; }
+        nav[aria-label="목차"] p { color: var(--text-dim); font-size: 0.85rem; }
+        nav[aria-label="목차"] ul { list-style: none; display: flex; justify-content: center; gap: 1.2rem; padding: 0; }
+        nav[aria-label="목차"] a { color: var(--accent-2); text-decoration: none; font-size: 0.9rem; }
+        nav[aria-label="목차"] a:hover { text-decoration: underline; }
+
+        /* 섹션 카드: myHoliday의 .time-block과 동일 양식 */
+        .info-block {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem 1.8rem;
+            margin-bottom: 1.5rem;
+            scroll-margin-top: 1.5rem;   /* 목차 앵커 이동 시 위 여백 */
+        }
+        .info-block h2 {
+            font-size: 1.15rem; color: var(--cyan);
+            margin-bottom: 1rem;
+        }
+
+        /* ul/ol: myHoliday의 일정 줄과 동일한 형태 (점선 구분, 줄 간격) */
+        .info-block ul, .info-block ol {
+            list-style: none; padding: 0; margin: 0;
+        }
+        .info-block li {
+            padding: 0.45rem 0;
+            border-bottom: 1px dashed var(--border);
+            color: var(--text-dim);
+        }
+        .info-block li:last-child { border-bottom: none; }
+        /* ol만 번호를 시안색 배지로 (myHoliday의 시간 배지 역할) */
+        .info-block ol { counter-reset: todo; }
+        .info-block ol li::before {
+            counter-increment: todo;
+            content: counter(todo) ". ";
+            color: var(--accent-2);
+            font-weight: 700;
+            font-variant-numeric: tabular-nums;
+            margin-right: 0.5rem;
+        }
+
+        /* dl: dt를 myHoliday의 시간 배지처럼(시안색 볼드), dd는 일정 텍스트처럼 */
+        .info-block dt {
+            color: var(--accent-2); font-weight: 700;
+            padding-top: 0.6rem;
+        }
+        .info-block dt:first-child { padding-top: 0; }
+        .info-block dd {
+            margin: 0.2rem 0 0.6rem 0;
+            padding-bottom: 0.6rem;
+            border-bottom: 1px dashed var(--border);
+            color: var(--text-dim); line-height: 1.7;
+        }
+        .info-block dd:last-child { border-bottom: none; padding-bottom: 0; }
+
+        footer {
+            text-align: center; margin-top: 2.5rem;
+            color: var(--text-dim); font-size: 0.85rem;
+        }
+        footer a { color: var(--accent-2); }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>👋 안녕하세요! 저를 소개합니다</h1>
-        <p>아래는 제가 좋아하는 것들과 올해의 계획, 그리고 저를 표현하는 단어들입니다.</p>
-        <!-- nav: 각 섹션으로 이동하는 앵커 링크 -->
-        <nav aria-label="목차">
-            <p>바로가기:</p>
-            <ul>
-                <li><a href="#food">좋아하는 음식</a></li>
-                <li><a href="#todo">올해 할 일</a></li>
-                <li><a href="#words">나를 설명하는 단어</a></li>
-            </ul>
-        </nav>
-    </header>
-    <hr />
+    <div class="container">
+        <header>
+            <h1>👋 안녕하세요! 저를 소개합니다</h1>
+            <p>아래는 제가 좋아하는 것들과 올해의 계획, 그리고 저를 표현하는 단어들입니다.</p>
+            <!-- nav: 각 섹션으로 이동하는 앵커 링크 -->
+            <nav aria-label="목차">
+                <p>바로가기:</p>
+                <ul>
+                    <li><a href="#food">좋아하는 음식</a></li>
+                    <li><a href="#todo">올해 할 일</a></li>
+                    <li><a href="#words">나를 설명하는 단어</a></li>
+                </ul>
+            </nav>
+        </header>
 
-  <main>
-    <!-- 섹션 1: 좋아하는 음식 -->
-    <section id="food">
-      <h2>🍕 내가 좋아하는 음식</h2>
-      <ul>
-        <li>아이스 아메리카노 ☕</li>
-        <li>매콤한 떡볶이 🌶️</li>
-        <li>달콤한 초콜릿 케이크 🍰</li>
-      </ul>
-    </section>
+        <main>
+            <!-- 섹션 1: 좋아하는 음식 -->
+            <section id="food" class="info-block">
+                <h2>🍕 내가 좋아하는 음식</h2>
+                <ul>
+                    <li>아이스 아메리카노 ☕</li>
+                    <li>매콤한 떡볶이 🌶️</li>
+                    <li>달콤한 초콜릿 케이크 🍰</li>
+                </ul>
+            </section>
 
-    <hr />
+            <!-- 섹션 2: 올해 할 일 -->
+            <section id="todo" class="info-block">
+                <h2>📅 올해 할 일</h2>
+                <ol>
+                    <li>일주일에 책 한 권씩 읽기 📚</li>
+                    <li>꾸준히 운동해서 체력 키우기 💪</li>
+                    <li>새로운 프로그래밍 언어 배우기 💻</li>
+                </ol>
+            </section>
 
-    <!-- 섹션 2: 올해 할 일 -->
-    <section id="todo">
-      <h2>📅 올해 할 일</h2>
-      <ol>
-        <li>일주일에 책 한 권씩 읽기 📚</li>
-        <li>꾸준히 운동해서 체력 키우기 💪</li>
-        <li>새로운 프로그래밍 언어 배우기 💻</li>
-      </ol>
-    </section>
+            <!-- 섹션 3: 나를 설명하는 단어들 -->
+            <section id="words" class="info-block">
+                <h2>✨ 나를 설명하는 단어들</h2>
+                <dl>
+                    <dt>🏃 호기심</dt>
+                    <dd>새로운 기술이나 흥미로운 트렌드를 보면 직접 경험해보고 배워야 직성이 풀립니다.</dd>
+                    <dt>☕ 꾸준함</dt>
+                    <dd>매일 작은 계획이라도 세우고 그것을 지키기 위해 노력하는 성실함을 가지고 있습니다.</dd>
+                    <dt>🎨 크리에이티브</dt>
+                    <dd>단순한 결과물보다는 사용자에게 더 나은 경험과 시각적인 즐거움을 주는 것을 좋아합니다.</dd>
+                </dl>
+            </section>
+        </main>
 
-    <hr />
-
-    <!-- 섹션 3: 나를 설명하는 단어들 -->
-    <section id="words">
-      <h2>✨ 나를 설명하는 단어들</h2>
-      <dl>
-        <dt>🏃 호기심</dt>
-        <dd>새로운 기술이나 흥미로운 트렌드를 보면 직접 경험해보고 배워야 직성이 풀립니다.</dd>
-        <dt>☕ 꾸준함</dt>
-        <dd>매일 작은 계획이라도 세우고 그것을 지키기 위해 노력하는 성실함을 가지고 있습니다.</dd>
-        <dt>🎨 크리에이티브</dt>
-        <dd>단순한 결과물보다는 사용자에게 더 나은 경험과 시각적인 즐거움을 주는 것을 좋아합니다.</dd>
-      </dl>
-    </section>
-  </main>
+        <footer>
+            <p><a class="home-btn" href="index.html?skipIntro=1">홈(Hub)으로 돌아가기</a></p>
+        </footer>
+    </div>
 </body>
 </html>
