@@ -4,6 +4,91 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>가입 완료 · SKALA</title>
+  <style>
+    :root {
+      --bg: #0d1117; --bg-2: #161b26;
+      --surface: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.08);
+      --text: #e8edf7; --text-dim: #8b96ad;
+      --accent: #ff6a13; --purple: #7b5cff; --cyan: #2ee6c6; --accent-2: #38bdf8;
+      --glow: rgba(46, 230, 198, 0.2);
+      --font: 'Pretendard', 'Noto Sans KR', system-ui, sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: var(--font); background: var(--bg); color: var(--text);
+      line-height: 1.7; min-height: 100vh; padding: 2rem 1rem;
+      display: flex; align-items: center; justify-content: center;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0;
+      background:
+        radial-gradient(700px circle at 50% 0%, var(--glow), transparent 45%),
+        radial-gradient(500px circle at 85% 90%, rgba(123,92,255,0.12), transparent 40%);
+      z-index: 0; pointer-events: none;
+    }
+    .card {
+      position: relative; z-index: 1;
+      max-width: 560px; width: 100%;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; padding: 2.5rem;
+    }
+    .success-head { text-align: center; margin-bottom: 2rem; }
+    .success-icon {
+      font-size: 3.5rem; display: inline-block;
+      animation: pop 0.6s cubic-bezier(0.17, 0.89, 0.32, 1.28);
+    }
+    @keyframes pop {
+      0% { transform: scale(0) rotate(-20deg); opacity: 0; }
+      100% { transform: scale(1) rotate(0); opacity: 1; }
+    }
+    .success-head h1 {
+      font-size: 1.8rem; font-weight: 800; margin-top: 0.8rem;
+      background: linear-gradient(120deg, var(--cyan), var(--purple));
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .success-head .welcome { color: var(--text-dim); margin-top: 0.5rem; }
+    .success-head .welcome strong { color: var(--accent); }
+    hr { border: none; border-top: 1px solid var(--border); margin: 1.8rem 0; }
+    section h2 {
+      font-size: 1.15rem; font-weight: 700; color: var(--cyan);
+      margin-bottom: 0.9rem;
+    }
+    section > p { color: var(--text-dim); margin-bottom: 1rem; }
+    .notice { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+    .notice li { position: relative; padding-left: 1.6rem; color: var(--text-dim); }
+    .notice li::before {
+      content: "✓"; position: absolute; left: 0;
+      color: var(--cyan); font-weight: 800;
+    }
+    .links { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+    .links a {
+      display: flex; align-items: center; gap: 0.7rem;
+      padding: 0.9rem 1.1rem;
+      background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: 12px; text-decoration: none; color: var(--text);
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+    .links a:hover {
+      transform: translateX(4px); border-color: var(--purple);
+      background: rgba(123,92,255,0.08);
+    }
+    .links .emoji { font-size: 1.3rem; }
+    .links .arrow { margin-left: auto; color: var(--text-dim); }
+    .links a.pending .badge {
+      margin-left: auto; font-size: 0.7rem; color: var(--text-dim);
+      border: 1px solid var(--border); border-radius: 999px; padding: 0.1rem 0.5rem;
+    }
+    .home-btn {
+      display: block; text-align: center; margin-top: 2rem;
+      padding: 0.9rem; border-radius: 12px; text-decoration: none; font-weight: 700;
+      background: linear-gradient(120deg, var(--purple), var(--accent-2)); color: #fff;
+      transition: transform 0.15s ease;
+    }
+    .home-btn:hover { transform: translateY(-2px); }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+  </style>
 </head>
 <body>
   <div class="card">
