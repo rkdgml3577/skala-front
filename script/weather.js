@@ -17,22 +17,35 @@ var cities = [
 var citySelect = document.getElementById("citySelect");
 var weatherBox = document.getElementById("weather-box");
 
-// [기본] change 이벤트: 사용자가 선택을 "바꿀 때마다" 실행
-citySelect.addEventListener("change", function () {
-  // select의 value는 항상 문자열 → 숫자 인덱스로 변환 (성적 계산기 교훈!)
-  var index = parseInt(citySelect.value, 10);
+// ✅ 추가 1: async 함수 (새로 등장)
+async function loadWeather(city) {
+  weatherBox.innerHTML = "<p>실시간 날씨 로딩 중... ⏳</p>";
+  try {
+    var url = `https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lng}&current=temperature_2m,relative_humidity_2m`;
+    var response = await fetch(url);
+    if (!response.ok) {
+      throw new Error("서버 응답 오류: " + response.status);
+    }
+    var data = await response.json();
+    var temp = data.current.temperature_2m;
+    var humidity = data.current.relative_humidity_2m;
+    weatherBox.innerHTML =
+      "<p>🌏 <strong>" + city.flag + " " + city.name + "</strong> 실시간 날씨</p>" +
+      "<p>🌡️ 현재 기온: <strong>" + temp + "°C</strong></p>" +
+      "<p>💧 현재 습도: <strong>" + humidity + "%</strong></p>" +
+      "<p>· 위도 " + city.lat + " / 경도 " + city.lng + "</p>";
+  } catch (error) {
+    weatherBox.innerHTML = "<p>⚠️ 날씨를 불러오지 못했습니다.<br>잠시 후 다시 시도해 주세요.</p>";
+    console.error("날씨 API 오류:", error);
+  }
+}
 
-  // [추가 실습] 안내 옵션(value="")을 다시 고른 경우 → 초기 문구로 복귀
+// ✅ 추가 2: 새 리스너 (구조는 옛것과 비슷하지만 마지막 줄이 다름)
+citySelect.addEventListener("change", function () {
+  var index = parseInt(citySelect.value, 10);
   if (isNaN(index)) {
     weatherBox.innerHTML = '<p class="weather-hint">도시를 선택하면 정보가 표시됩니다.</p>';
     return;
   }
-
-  var city = cities[index];   // 선택된 도시 객체
-
-  // [기본] innerHTML로 결과 영역을 통째로 갈아끼움 (DOM 조작)
-  weatherBox.innerHTML =
-    "<p>📍 <strong>" + city.flag + " " + city.name + "</strong> 정보</p>" +
-    "<p>· 위도(Latitude): " + city.lat + "</p>" +
-    "<p>· 경도(Longitude): " + city.lng + "</p>";
+  loadWeather(cities[index]);   // ← 좌표 표시 대신 비동기 함수 호출
 });
