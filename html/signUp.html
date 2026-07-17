@@ -98,6 +98,12 @@
       .email-row input, .email-row select { width: 100%; }
     }
     @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+    .hint { font-size: 0.78rem; margin-top: 0.35rem; min-height: 1em; }
+    .hint.ok { color: var(--ok); }
+    .hint.bad { color: var(--danger); }
+    .hint.dim { color: var(--text-dim); }
+    .strength { display: flex; gap: 4px; margin-top: 0.4rem; }
+    .strength span { flex: 1; height: 4px; background: var(--bg-2); border-radius: 999px; transition: background 0.3s ease; }
   </style>
 </head>
 <body>
@@ -116,12 +122,18 @@
         <input type="text" id="userId" name="userId"
                placeholder="4~15자 영문/숫자" required
                pattern="[A-Za-z0-9]{4,15}" />
+        <p class="hint dim" id="idHint">영문과 숫자로 4~15자</p>
+
       </div>
 
       <div class="field">
         <label for="password">비밀번호 <span class="req">*</span></label>
         <input type="password" id="password" name="password"
                placeholder="8자 이상 입력" required minlength="8" />
+        <div class="strength" aria-hidden="true">
+            <span id="s1"></span><span id="s2"></span><span id="s3"></span><span id="s4"></span>
+          </div>
+          <p class="hint dim" id="pwHint">8자 이상 입력해 주세요</p>
       </div>
 
       <div class="field">
