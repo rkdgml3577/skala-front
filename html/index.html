@@ -204,6 +204,26 @@
     .widget a { color: var(--accent-2); text-decoration: none; }
     .widget a:hover { text-decoration: underline; }
     .widget p { color: var(--text-dim); font-size: 0.9rem; }
+        #citySelect {
+      width: 100%;
+      padding: 0.55rem 0.7rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg-2);
+      color: var(--text);
+      font: inherit;
+      cursor: pointer;
+    }
+    #weather-box {
+      margin-top: 0.9rem;
+      padding: 0.9rem 1rem;
+      border: 1px dashed var(--border);   /* 예시 화면의 점선 박스 느낌 */
+      border-radius: 10px;
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+    #weather-box strong { color: var(--text); }
     /* [과제] 게임 시작 버튼 — 기존 그라디언트 시그니처 재활용 */
     .game-btn {
       width: 100%;
@@ -526,6 +546,23 @@
             <strong id="clock">--:--:--</strong>
           </div>
         </section>
+                <!-- [과제] 실시간 날씨 — DOM/이벤트 실습 -->
+        <section class="widget">
+          <h2>🌤️ 실시간 세계 날씨</h2>
+          <!-- [기본] 도시 선택 select: value는 cities 배열의 인덱스 -->
+          <select id="citySelect" aria-label="날씨를 볼 도시 선택">
+            <option value="">— 도시를 선택하세요 —</option>
+            <option value="0">🇰🇷 대한민국 서울</option>
+            <option value="1">🇫🇷 프랑스 파리</option>
+            <option value="2">🇯🇵 일본 도쿄</option>
+            <option value="3">🇹🇭 태국 방콕</option>
+            <option value="4">🇰🇭 캄보디아 씨엠립</option>
+          </select>
+          <!-- [기본] 결과 표시 영역 (id는 과제 스펙 그대로) -->
+          <div id="weather-box">
+            <p class="weather-hint">도시를 선택하면 정보가 표시됩니다.</p>
+          </div>
+        </section>
 
         <!-- [추가 실습] 추천 학습 링크 -->
         <section class="widget">
@@ -559,6 +596,8 @@
   <script src="../script/upDown.js"></script>
   <script src="../script/grade.js"></script>
   <script src="../script/bag.js"></script>
+  <script src="../script/weather.js"></script>
+
 
   <script>
     /* ============================================================
