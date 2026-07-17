@@ -42,6 +42,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
+      #main-content { min-height: 100vh; display: flex; flex-direction: column; }
       font-family: var(--font);
       background: var(--bg);
       color: var(--text);
@@ -281,90 +282,92 @@
   
 </head>
 <body>
-  <!-- 시맨틱 태그: 페이지 상단 영역 -->
-  <header>
-    <div class="brand">SKALA<span>-FRONT</span></div>
+  <div id ="main-content">
+    <!-- 시맨틱 태그: 페이지 상단 영역 -->
+    <header>
+      <div class="brand">SKALA<span>-FRONT</span></div>
 
-    <!-- 네비게이션: 페이지 내 각 섹션으로 이동하는 앵커 링크 -->
-    <nav aria-label="주요 메뉴">
-      <ul>
-        <li><a href="#welcome">환영</a></li>
-        <li><a href="#about">과정 소개</a></li>
-        <li><a href="#contact">문의</a></li>
-      </ul>
-    </nav>
+      <!-- 네비게이션: 페이지 내 각 섹션으로 이동하는 앵커 링크 -->
+      <nav aria-label="주요 메뉴">
+        <ul>
+          <li><a href="#welcome">환영</a></li>
+          <li><a href="#about">과정 소개</a></li>
+          <li><a href="#contact">문의</a></li>
+        </ul>
+      </nav>
 
-    <button class="theme-btn" id="themeBtn" aria-label="화면 테마 전환">🌙 테마</button>
-  </header>
+      <button class="theme-btn" id="themeBtn" aria-label="화면 테마 전환">🌙 테마</button>
+    </header>
 
-  <!-- 시맨틱 태그: 핵심 콘텐츠 영역 -->
-  <main>
-    <!-- 환영 섹션 -->
-    <section id="welcome">
-      <p class="eyebrow">SK AI Academy</p>
+    <!-- 시맨틱 태그: 핵심 콘텐츠 영역 -->
+    <main>
+      <!-- 환영 섹션 -->
+      <section id="welcome">
+        <p class="eyebrow">SK AI Academy</p>
 
-      <!-- [기본 요구사항] h1 "환영 인사" -->
-      <h1><span id="typed">환영 인사</span><span class="cursor" aria-hidden="true"></span></h1>
+        <!-- [기본 요구사항] h1 "환영 인사" -->
+        <h1><span id="typed">환영 인사</span><span class="cursor" aria-hidden="true"></span></h1>
 
-      <!-- [기본 요구사항] 본문 p -->
-      <p class="lead">스칼라에 오신 것을 환영합니다.</p>
-      <section class="shortcuts">
-        <h2>바로가기</h2>
-          <ul>
-            <div class="card-grid">
-              <a class="card" href="myClass.html">
-                <span class="icon" aria-hidden="true">📅</span>
-                <span class="card-title">나의 수업</span>
-                <span class="card-file">myClass.html</span>
-              </a>
-              <!-- myHoliday.html은 아직 미생성 → pending 클래스로 표시 -->
-              <a class="card pending" href="myHoliday.html">
-                <span class="icon" aria-hidden="true">🏖️</span>
-                <span class="card-title">나의 휴일</span>
-                <span class="card-file">myHoliday.html</span>
-              </a>
-              <a class="card" href="myProfile.html">
-                <span class="icon" aria-hidden="true">🙋</span>
-                <span class="card-title">나의 프로필</span>
-                <span class="card-file">myProfile.html</span>
-              </a>
-            </div>
-          </ul>
-</section>
-      <!-- 실시간 시계 -->
-      <div class="clock" role="status" aria-live="off">
-        <span class="dot" aria-hidden="true"></span>
-        지금 시각 <strong id="clock">--:--:--</strong>
-      </div>
-    </section>
-    
+        <!-- [기본 요구사항] 본문 p -->
+        <p class="lead">스칼라에 오신 것을 환영합니다.</p>
+        <section class="shortcuts">
+          <h2>바로가기</h2>
+            <ul>
+              <div class="card-grid">
+                <a class="card" href="myClass.html">
+                  <span class="icon" aria-hidden="true">📅</span>
+                  <span class="card-title">나의 수업</span>
+                  <span class="card-file">myClass.html</span>
+                </a>
+                <!-- myHoliday.html은 아직 미생성 → pending 클래스로 표시 -->
+                <a class="card pending" href="myHoliday.html">
+                  <span class="icon" aria-hidden="true">🏖️</span>
+                  <span class="card-title">나의 휴일</span>
+                  <span class="card-file">myHoliday.html</span>
+                </a>
+                <a class="card" href="myProfile.html">
+                  <span class="icon" aria-hidden="true">🙋</span>
+                  <span class="card-title">나의 프로필</span>
+                  <span class="card-file">myProfile.html</span>
+                </a>
+              </div>
+            </ul>
+  </section>
+        <!-- 실시간 시계 -->
+        <div class="clock" role="status" aria-live="off">
+          <span class="dot" aria-hidden="true"></span>
+          지금 시각 <strong id="clock">--:--:--</strong>
+        </div>
+      </section>
+      
 
-    <!-- 과정 소개 섹션: 목록으로 배우는 내용 안내 -->
-    <section id="about">
-      <h2>SKALA에서 배우는 것</h2>
-      <ul>
-        <li>웹 프론트엔드 기초 (HTML · CSS · JavaScript)</li>
-        <li>Git과 GitHub을 활용한 협업</li>
-        <li>AI 실무 역량과 프로젝트 경험</li>
-      </ul>
-    </section>
+      <!-- 과정 소개 섹션: 목록으로 배우는 내용 안내 -->
+      <section id="about">
+        <h2>SKALA에서 배우는 것</h2>
+        <ul>
+          <li>웹 프론트엔드 기초 (HTML · CSS · JavaScript)</li>
+          <li>Git과 GitHub을 활용한 협업</li>
+          <li>AI 실무 역량과 프로젝트 경험</li>
+        </ul>
+      </section>
 
-    <!-- 문의 섹션 --->
-    <section id="contact">
-      <h2>문의</h2>
-      <p>
-        더 궁금한 점이 있다면
-        <a href="https://github.com/rkdgml3577" target="_blank" rel="noopener noreferrer">GitHub 프로필</a>로
-        연락해 주세요.
-      </p>
-      <address>Made by rkdgml3577</address>
-    </section>
-  </main>
+      <!-- 문의 섹션 --->
+      <section id="contact">
+        <h2>문의</h2>
+        <p>
+          더 궁금한 점이 있다면
+          <a href="https://github.com/rkdgml3577" target="_blank" rel="noopener noreferrer">GitHub 프로필</a>로
+          연락해 주세요.
+        </p>
+        <address>Made by rkdgml3577</address>
+      </section>
+    </main>
 
-  <!-- 시맨틱 태그: 페이지 하단 영역 -->
-  <footer>
-    <p>© 2026 SKALA-FRONT · Built by rkdgml3577</p>
-  </footer>
+    <!-- 시맨틱 태그: 페이지 하단 영역 -->
+    <footer>
+      <p>© 2026 SKALA-FRONT · Built by rkdgml3577</p>
+    </footer>
+  </div>
   <script>
     /* ============================================================
        JavaScript — 페이지에 동적 기능을 추가
