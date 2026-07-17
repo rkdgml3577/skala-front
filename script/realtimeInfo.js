@@ -6,11 +6,11 @@
 // [기본] import: 확장자 .js까지 필수! (브라우저 ES 모듈 규칙)
 import { cities, fetchWeather } from "./weatherAPI.js";
 
-var citySelect = document.getElementById("citySelect");
-var weatherBox = document.getElementById("weather-box");
+let citySelect = document.getElementById("citySelect");
+let weatherBox = document.getElementById("weather-box");
 
 // [유지] 레이스 방어 번호표
-var requestId = 0;
+let requestId = 0;
 
 // [유지] WMO 코드 번역 — "숫자를 사람 말로"는 표시 로직이므로 화면 모듈 소속
 function getWeatherIcon(code) {
@@ -27,12 +27,12 @@ function getWeatherIcon(code) {
 
 // [기본] 화면 갱신 흐름: 로딩 → (import한 함수로 데이터 요청) → 그리기/에러
 async function showWeather(city) {
-  var myId = ++requestId;
+  let myId = ++requestId;
   weatherBox.innerHTML = "<p>실시간 날씨 로딩 중... ⏳</p>";
 
   try {
     // 주방(weatherAPI)에 주문 — 어떻게 조리하는지 홀은 모름
-    var weather = await fetchWeather(city);
+    let weather = await fetchWeather(city);
 
     if (myId !== requestId) return;   // 유통기한 지난 응답 폐기
 
@@ -51,15 +51,15 @@ async function showWeather(city) {
 
 // [추가 실습] select 옵션을 cities 데이터로 자동 생성
 // → HTML 하드코딩 제거: 도시 추가는 이제 weatherAPI.js 한 곳만 고치면 됨
-for (var i = 0; i < cities.length; i++) {
-  var option = document.createElement("option");
+for (let i = 0; i < cities.length; i++) {
+  let option = document.createElement("option");
   option.value = i;
   option.textContent = cities[i].flag + " " + cities[i].name;
   citySelect.appendChild(option);
 }
 
 citySelect.addEventListener("change", function () {
-  var index = parseInt(citySelect.value, 10);
+  let index = parseInt(citySelect.value, 10);
   if (isNaN(index)) {
     requestId++;
     weatherBox.innerHTML = '<p class="weather-hint">도시를 선택하면 정보가 표시됩니다.</p>';
