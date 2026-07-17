@@ -4,52 +4,99 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>나의 여행지 · SKALA</title>
+  <style>
+    :root {
+      --bg: #0d1117; --bg-2: #161b26;
+      --surface: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.08);
+      --text: #e8edf7; --text-dim: #8b96ad;
+      --accent: #ff6a13; --purple: #7b5cff; --cyan: #2ee6c6; --accent-2: #38bdf8;
+      --glow: rgba(56, 189, 248, 0.2);
+      --font: 'Pretendard', 'Noto Sans KR', system-ui, sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: var(--font); background: var(--bg); color: var(--text);
+      line-height: 1.6; min-height: 100vh; padding: 2rem 1rem;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0;
+      background:
+        radial-gradient(600px circle at 15% 5%, var(--glow), transparent 40%),
+        radial-gradient(500px circle at 85% 95%, rgba(123,92,255,0.1), transparent 40%);
+      z-index: 0; pointer-events: none;
+    }
+    .wrap { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+    header { text-align: center; margin-bottom: 2rem; }
+    header h1 {
+      font-size: 1.9rem; font-weight: 800;
+      background: linear-gradient(120deg, var(--text), var(--cyan));
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    header p { color: var(--text-dim); margin-top: 0.4rem; }
+    section { margin-bottom: 2.5rem; }
+    section > h2 {
+      font-size: 1.2rem; font-weight: 700; color: var(--cyan);
+      margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.5rem;
+    }
+    figure {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; overflow: hidden; margin-bottom: 1.5rem;
+    }
+    figure img, figure video { width: 100%; height: auto; display: block; }
+    figcaption { padding: 0.9rem 1.1rem; color: var(--text-dim); font-size: 0.95rem; }
+    figcaption strong { color: var(--text); }
+    footer { text-align: center; color: var(--text-dim); font-size: 0.85rem; margin-top: 2rem; }
+    footer a { color: var(--accent-2); }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>🌏 나의 여행 앨범 🎵</h1>
-    <p>사진, 음악, 영상으로 담은 나의 여행 기록입니다.</p>
+    <div class="wrap">
+        <header>
+            <h1>🌏 나의 여행 앨범 🎵</h1>
+            <p>사진, 음악, 영상으로 담은 나의 여행 기록입니다.</p>
 
-    <!-- 필수: audio + source -->
-    <audio controls>
-      <source src="../media/travel-music.mp3" type="audio/mpeg" />
-      이 브라우저는 오디오 재생을 지원하지 않습니다.
-    </audio>
-  </header>
+            <!-- 필수: audio + source -->
+            <audio controls>
+            <source src="../media/travel-music.mp3" type="audio/mpeg" />
+            이 브라우저는 오디오 재생을 지원하지 않습니다.
+            </audio>
+        </header>
 
-  <!-- 사진 갤러리 -->
-  <section>
-    <h2>📷 여행 사진</h2>
-    <!-- 필수: img -->
-    <figure>
-      <img src="../media/lijiang.jpg" alt="리장 호도협의 설산과 계곡 풍경" />
-      <figcaption><strong>리장 호도협</strong> (2025년)</figcaption>
-    </figure>
-    <figure>
-      <img src="../media/cebu-night.jpg" alt="세부 탑스힐에서 내려다본 야경" />
-      <figcaption><strong>세부 탑스힐</strong> (2024년)</figcaption>
-    </figure>
-    <figure>
-      <img src="../media/hokkaido.jpg" alt="홋카이도 대설산의 눈 덮인 풍경" />
-      <figcaption><strong>홋카이도 대설산</strong> (2025년)</figcaption>
-    </figure>
-  </section>
+        <!-- 사진 갤러리 -->
+        <section>
+            <h2>📷 여행 사진</h2>
+            <!-- 필수: img -->
+            <figure>
+            <img src="../media/lijiang.jpg" alt="리장 호도협의 설산과 계곡 풍경" />
+            <figcaption><strong>리장 호도협</strong> (2025년)</figcaption>
+            </figure>
+            <figure>
+            <img src="../media/cebu-night.jpg" alt="세부 탑스힐에서 내려다본 야경" />
+            <figcaption><strong>세부 탑스힐</strong> (2024년)</figcaption>
+            </figure>
+            <figure>
+            <img src="../media/hokkaido.jpg" alt="홋카이도 대설산의 눈 덮인 풍경" />
+            <figcaption><strong>홋카이도 대설산</strong> (2025년)</figcaption>
+            </figure>
+        </section>
 
-  <!-- 비디오 -->
-  <section>
-    <h2>🎬 나의 여행 브이로그</h2>
-    <!-- 필수: video + source -->
-    <figure>
-      <video controls poster="../media/video-thumb.jpg">
-        <source src="../media/travel-video.mp4" type="video/mp4" />
-        이 브라우저는 비디오 재생을 지원하지 않습니다.
-      </video>
-      <figcaption><strong>리장 여행 브이로그</strong> 🎼</figcaption>
-    </figure>
-  </section>
+        <!-- 비디오 -->
+        <section>
+            <h2>🎬 나의 여행 브이로그</h2>
+            <!-- 필수: video + source -->
+            <figure>
+            <video controls poster="../media/video-thumb.jpg">
+                <source src="../media/travel-video.mp4" type="video/mp4" />
+                이 브라우저는 비디오 재생을 지원하지 않습니다.
+            </video>
+            <figcaption><strong>리장 여행 브이로그</strong> 🎼</figcaption>
+            </figure>
+        </section>
 
-  <footer>
-    <p><a href="index.html?skipIntro=1">← 홈으로 돌아가기</a></p>
-  </footer>
+        <footer>
+            <p><a href="index.html?skipIntro=1">← 홈으로 돌아가기</a></p>
+        </footer>
+    </div>
 </body>
 </html>
