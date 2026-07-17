@@ -17,6 +17,89 @@
   }
   header { text-align: center; margin-bottom: 1.5rem; }
   header h1 { display: inline-block; font-size: 1.9rem; }
+  /* [박스 모델] table */
+  table {
+    width: 100%;                    /* 너비 */
+    margin: 1.5rem auto;            /* 바깥 여백 + 가운데 */
+    border-collapse: collapse;      /* 셀 테두리 합치기 → 이중선 제거 */
+    background: rgba(255,255,255,0.02);
+    border-radius: 14px;
+    overflow: hidden;               /* 둥근 모서리 유지 */
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  }
+  caption {
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--cyan);
+    padding: 0 0 1rem;
+    caption-side: top;
+  }
+  /* [박스 모델] th, td — 테두리 + 안쪽 여백 */
+  th, td {
+    border: 1px solid var(--border);  /* 테두리 */
+    padding: 0.7rem 0.6rem;           /* 안쪽 여백 */
+    text-align: center;
+    vertical-align: middle;
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+  /* 배경 그라디언트 (톤 통일) */
+  body::before {
+    content: ""; position: fixed; inset: 0;
+    background:
+      radial-gradient(600px circle at 15% 5%, rgba(56,189,248,0.15), transparent 40%),
+      radial-gradient(500px circle at 85% 95%, rgba(123,92,255,0.12), transparent 40%);
+    z-index: 0; pointer-events: none;
+  }
+  .container { position: relative; z-index: 1; }
+
+  /* 헤더 행 (시간/요일) 그라디언트 강조 */
+  thead th {
+    background: linear-gradient(120deg, var(--purple), var(--accent-2));
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 0.9rem 0.6rem;
+    border-color: rgba(255,255,255,0.15);
+  }
+  /* 시간 열(첫 칸) 강조 */
+  tbody td:first-child {
+    background: var(--bg-2);
+    color: var(--text-dim);
+    font-weight: 600;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+  /* 일반 수업 셀 */
+  tbody td {
+    color: var(--text);
+    background: rgba(255,255,255,0.015);
+    transition: background 0.2s ease;
+  }
+  /* 수업 셀 hover 강조 (빈 칸/시간 칸 제외) */
+  tbody td:not(:empty):not(:first-child):hover {
+    background: rgba(123,92,255,0.18);
+    color: #fff;
+  }
+  /* 점심시간 행 특별 강조 (colspan 5) */
+  tbody td[colspan="5"] {
+    background: linear-gradient(90deg, rgba(255,106,19,0.15), rgba(46,230,198,0.15));
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 0.8rem;
+  }
+  /* 2시간 이상 강의(rowspan) 셀 구분 */
+  tbody td[rowspan] {
+    background: rgba(56,189,248,0.06);
+    font-weight: 600;
+  }
+  footer { text-align: center; margin-top: 1.5rem; }
+
+  /* 반응형: 모바일 */
+  @media (max-width: 640px) {
+    th, td { padding: 0.4rem 0.3rem; font-size: 0.7rem; }
+    .container { padding: 1rem 0.5rem; }
+  }
   </style>
 </head>
 <body>
@@ -25,7 +108,7 @@
             <h1>📅 나의 강의 시간표</h1>
         </header>
 
-        <table border="1">
+        <table>
             <caption>주간 강의 시간표</caption>
             <!-- thead: 시간 + 요일 헤더 -->
             <thead>
