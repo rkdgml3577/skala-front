@@ -19,6 +19,7 @@
        ============================================================ */
     :root {
       --bg: #0a0e1a;
+      --bg-2: #161b26;
       --surface: rgba(255,255,255,0.04);
       --border: rgba(255,255,255,0.08);
       --text: #e8edf7;
@@ -42,6 +43,42 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
+      .screen {
+  position: fixed; inset: 0; z-index: 100;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  background: var(--bg);
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+.screen.hidden { opacity: 0; visibility: hidden; }
+
+#loading .logo-sk {
+  font-size: 3.5rem; font-weight: 800; letter-spacing: 0.05em;
+  color: #fff; margin-bottom: 3rem;
+  display: flex; align-items: center; gap: 0.2rem;
+}
+.logo-sk .mark {
+  display: inline-block; width: 0; height: 0;
+  border-top: 20px solid transparent; border-bottom: 20px solid transparent;
+  border-left: 30px solid #fff; margin-left: 6px; transform: skewX(-8deg);
+}
+.progress-track {
+  width: min(70vw, 900px); height: 12px;
+  background: var(--bg-2); border-radius: 999px; overflow: hidden;
+}
+.progress-fill {
+  height: 100%; width: 0;
+  background: linear-gradient(90deg, #7b5cff, #38bdf8, #2ee6c6);
+  border-radius: 999px;
+  animation: fillBar 2.4s ease-out forwards;
+}
+@keyframes fillBar { to { width: 100%; } }
+#loading .tagline {
+  margin-top: 2rem; font-size: 1.3rem; font-weight: 700;
+  background: linear-gradient(90deg, #7b5cff, #2ee6c6);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
       #main-content { min-height: 100vh; display: flex; flex-direction: column; }
       font-family: var(--font);
       background: var(--bg);
@@ -282,6 +319,13 @@
   
 </head>
 <body>
+  <div class="screen" id="loading">
+    <div class="logo-sk">SK<span class="mark" aria-hidden="true"></span></div>
+    <div class="progress-track">
+      <div class="progress-fill"></div>
+    </div>
+    <p class="tagline">AI 시대, 미래 인재로 성장하는 길</p>
+  </div>
   <div id ="main-content">
     <!-- 시맨틱 태그: 페이지 상단 영역 -->
     <header>
