@@ -147,5 +147,13 @@
     <!-- 홈으로 -->
     <a href="index.html" class="home-btn">홈으로 돌아가기</a>
   </div>
+  <script>
+    /* signUp에서 get으로 넘어온 아이디를 URL에서 읽어 인사에 표시 */
+    const params = new URLSearchParams(window.location.search);
+    const userId = params.get('userId');
+    if (userId) {
+      document.getElementById('welcomeName').textContent = userId + '님';
+    }
+  </script>
 </body>
 </html>
