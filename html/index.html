@@ -115,6 +115,35 @@
       margin: 0 auto;
       padding: 2rem;
     }
+    /* ===== 바로가기 카드 ===== */
+    .shortcuts { margin-top: 3rem; }
+    .shortcuts h2 {
+      font-size: 1.1rem; color: var(--text-dim); font-weight: 600;
+      margin-bottom: 1.2rem; letter-spacing: 0.05em;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      list-style: none;   /* ul 점 제거 */
+    }
+    /* a 태그를 카드처럼 */
+    .card {
+      display: block;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem 1.2rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      background: var(--surface-hover);
+      border-color: var(--accent);
+    }
+    .card:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
     /* 환영 섹션: 화면 중앙 정렬 */
     #welcome {
