@@ -19,7 +19,7 @@
        디자인 토큰 — CSS 변수로 색을 한 곳에서 관리
        ============================================================ */
     :root {
-        --page-width: 1200px;   /* [추가] 페이지 공통 폭 토큰 */
+      --page-width: 1200px;   /* [추가] 페이지 공통 폭 토큰 */
 
       --bg: #0a0e1a;
       --bg-2: #161b26;
@@ -246,7 +246,8 @@
       border-color: var(--accent);
     }
     .card:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-
+    .card .card-title { transition: color 0.25s ease; }
+    .card:hover .card-title { color: var(--accent); }
     /* 환영 섹션: 화면 중앙 정렬 */
    
     .eyebrow {
@@ -377,6 +378,7 @@
       *, *::before { animation: none !important; transition: none !important; }
     }
       .hero {
+      width: 100%;     
       position: relative; z-index: 1;
       max-width: var(--page-width);
       margin: 0 auto;
@@ -427,7 +429,7 @@
 
     <!-- 시맨틱 태그: 핵심 콘텐츠 영역 -->      
     <!-- 환영 섹션 -->
-    <section id="welcome" class="hero" aria-label="환영 및 바로가기">
+    <div id="welcome" class="hero" aria-label="환영 및 바로가기">
       <p class="eyebrow">SK AI Academy</p>
 
       <!-- [기본 요구사항] h1 "환영 인사" -->
@@ -466,7 +468,7 @@
                   </a></li>
               </ul>
       </nav>
-    </section>
+    </div>
     <div class = "layout">
       <main>
         <section id="news">
