@@ -213,5 +213,43 @@
       <button type="reset">다시 작성</button>
     </div>
   </form>
+  <script>
+    // 아이디 실시간 검사
+    const userId = document.getElementById('userId');
+    const idHint = document.getElementById('idHint');
+    userId.addEventListener('input', () => {
+      const v = userId.value;
+      if (v === '') setHint(idHint, '영문과 숫자로 4~15자', 'dim');
+      else if (/^[A-Za-z0-9]{4,15}$/.test(v)) setHint(idHint, '사용 가능한 형식입니다', 'ok');
+      else setHint(idHint, '영문/숫자 4~15자로 입력해 주세요', 'bad');
+    });
+
+    // 비밀번호 강도
+    const pw = document.getElementById('password');
+    const pwHint = document.getElementById('pwHint');
+    const bars = [document.getElementById('s1'), document.getElementById('s2'),
+                  document.getElementById('s3'), document.getElementById('s4')];
+    pw.addEventListener('input', () => {
+      const v = pw.value;
+      let score = 0;
+      if (v.length >= 8) score++;
+      if (/[A-Z]/.test(v)) score++;
+      if (/[0-9]/.test(v)) score++;
+      if (/[^A-Za-z0-9]/.test(v)) score++;
+      const colors = ['', 'var(--danger)', 'var(--accent)', 'var(--accent-2)', 'var(--ok)'];
+      bars.forEach((b, i) => { b.style.background = i < score ? colors[score] : 'var(--bg-2)'; });
+      if (v === '') setHint(pwHint, '8자 이상 입력해 주세요', 'dim');
+      else if (v.length < 8) setHint(pwHint, '8자 이상이어야 합니다', 'bad');
+      else if (score <= 2) setHint(pwHint, '보통 — 숫자·대문자·특수문자를 섞으면 더 안전해요', 'dim');
+      else setHint(pwHint, '안전한 비밀번호입니다', 'ok');
+    });
+
+    // 자기소개 글자 수 카운터
+    const intro = document.getElementById('intro');
+    const introCount = document.getElementById('introCount');
+    intro.addEventListener('input', () => { introCount.textContent = intro.value.length; });
+
+    function setHint(el, msg, type) { el.textContent = msg; el.className = 'hint ' + type; }
+  </script>
 </body>
 </html>
