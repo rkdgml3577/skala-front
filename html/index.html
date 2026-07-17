@@ -142,18 +142,18 @@
     .brand { font-weight: 800; font-size: 1.1rem; }
     .brand span { color: var(--accent); }
 
-    nav ul {
+    header nav ul {
       display: flex;
       gap: 1.5rem;
       list-style: none;   /* 목록의 점 제거 */
     }
-    nav a {
+    header nav a {
       color: var(--text-dim);
       text-decoration: none;
       font-size: 0.95rem;
       transition: color 0.2s ease;
     }
-    nav a:hover { color: var(--accent); }
+    header nav a:hover { color: var(--accent); }
 
     .theme-btn {
       background: var(--surface);
@@ -169,15 +169,54 @@
     .theme-btn:hover { transform: translateY(-2px); }
     .theme-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
+    /* [기본 요구사항] main + aside 2단 레이아웃 (Hub 과제) */
+    .layout {
+      position: relative; z-index: 1;
+      width: 100%; 
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 1fr min(860px, 100%) 1fr;  /* 여백 | 본문 | 여백 (대칭) */
+      flex: 1;
+    }
+    main { grid-column: 2; }
+    aside {
+      grid-column: 3;          /* 오른쪽 여백 칸에 */
+      justify-self: start;     /* 그 칸의 왼쪽(본문 바로 옆)에 붙임 */
+      width: 280px;
+      margin-left: 2rem;       /* 본문과의 간격 */
+      display: flex; flex-direction: column; gap: 1.5rem;
+      align-self: start;
+      position: sticky; top: 2rem;   /* [추가 실습] 스크롤 따라오는 사이드바 */
+    }
+    .widget {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+    }
+    .widget h2 { font-size: 1.05rem; margin-bottom: 0.8rem; }
+    .widget ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .widget a { color: var(--accent-2); text-decoration: none; }
+    .widget a:hover { text-decoration: underline; }
+    .widget p { color: var(--text-dim); font-size: 0.9rem; }
+    @media (max-width: 1460px) {
+      .layout { grid-template-columns: 1fr; max-width: 900px; margin: 0 auto; }
+      main  { grid-column: 1; }
+      aside {
+        grid-column: 1; position: static;
+        width: 100%; margin-left: 1.2rem;
+        margin-top: 1.5rem;
+        /* 아래로 내려갈 땐 위젯을 가로로 나란히 (공간 활용) */
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.5rem;
+      }
+    }
     /* ---------- 메인 ---------- */
     main {
       position: relative;
       z-index: 1;
       flex: 1;
       width: 100%;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 2rem;
     }
     /* ===== 바로가기 카드 ===== */
     .shortcuts { margin-top: 3rem; }
@@ -187,7 +226,7 @@
     }
     .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns:repeat(5, 1fr);
       gap: 1rem;
       list-style: none;   /* ul 점 제거 */
     }
@@ -202,6 +241,7 @@
     /* a 태그를 카드처럼 */
     .card {
       display: block;
+      padding: 1.3rem 0.8rem; text-align: center;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 16px;
@@ -282,7 +322,7 @@
     @keyframes pulse { 50% { opacity: 0.3; transform: scale(0.8); } }
 
     /* 과정 소개 · 문의 섹션 카드 */
-    #about, #contact {
+    #about, #contact, #news {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 16px;
@@ -333,8 +373,9 @@
     /* ---------- 반응형: 모바일 ---------- */
     @media (max-width: 600px) {
       header { justify-content: center; }
-      nav ul { gap: 1rem; }
+      header nav ul { gap: 1rem; }
       main { padding: 1rem; }
+      .card-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     /* 접근성: 모션 최소화 설정 사용자 */
@@ -375,78 +416,110 @@
     </header>
 
     <!-- 시맨틱 태그: 핵심 콘텐츠 영역 -->
-    <main>
-      <!-- 환영 섹션 -->
-      <section id="welcome">
-        <p class="eyebrow">SK AI Academy</p>
+    <div class="layout">
 
-        <!-- [기본 요구사항] h1 "환영 인사" -->
-        <h1><span id="typed">환영 인사</span><span class="cursor" aria-hidden="true"></span></h1>
+      <main>
+        <!-- 환영 섹션 -->
+        <section id="welcome">
+          <p class="eyebrow">SK AI Academy</p>
 
-        <!-- [기본 요구사항] 본문 p -->
-        <p class="lead">스칼라에 오신 것을 환영합니다.</p>
-        <nav class="shortcuts" aria-label="다른 페이지(파일)로 이동하는 메뉴">
-          <h2>바로가기</h2>
-            <ul>
-              
-                <li><a class="card" href="myClass.html">
-                  <span class="icon" aria-hidden="true">📅</span>
-                  <span class="card-title">나의 수업</span>
-                  <span class="card-file">myClass.html</span>
-                </a></li>
-                <!-- myHoliday.html은 아직 미생성 → pending 클래스로 표시 -->
-                <li><a class="card" href="myHoliday.html">
-                  <span class="icon" aria-hidden="true">🏖️</span>
-                  <span class="card-title">나의 휴일</span>
-                  <span class="card-file">myHoliday.html</span>
-                </a></li>
-                <li><a class="card" href="myProfile.html">
-                  <span class="icon" aria-hidden="true">🙋</span>
-                  <span class="card-title">나의 프로필</span>
-                  <span class="card-file">myProfile.html</span>
-                </a></li>
-                <li><a class="card" href="myTrip.html">
-                  <span class="icon" aria-hidden="true">🌏</span>
-                  <span class="card-title">나의 여행 앨범</span>
-                  <span class="card-file">myTrip.html</span>
-                </a></li>
-                <li><a class="card" href="signUp.html">
-                  <span class="icon" aria-hidden="true">📝</span>
-                  <span class="card-title">회원가입</span>
-                  <span class="card-file">signUp.html</span>
-                </a></li>
-            </ul>
-        </nav>
-        <!-- 실시간 시계 -->
-        <div class="clock" role="status" aria-live="off">
-          <span class="dot" aria-hidden="true"></span>
-          지금 시각 <strong id="clock">--:--:--</strong>
-        </div>
-      </section>
-      
+          <!-- [기본 요구사항] h1 "환영 인사" -->
+          <h1><span id="typed">KangHee's Universe</span><span class="cursor" aria-hidden="true"></span></h1>
 
-      <!-- 과정 소개 섹션: 목록으로 배우는 내용 안내 -->
-      <section id="about">
-        <h2>SKALA에서 배우는 것</h2>
-        <ul>
-          <li>웹 프론트엔드 기초 (HTML · CSS · JavaScript)</li>
-          <li>Git과 GitHub을 활용한 협업</li>
-          <li>AI 실무 역량과 프로젝트 경험</li>
-        </ul>
-      </section>
+          <!-- [기본 요구사항] 본문 p -->
+          <p class="lead">저의 프로필, 학습내용, 여행 기록을 모아둔 Hub 페이지입니다</p>
+          <nav class="shortcuts" aria-label="다른 페이지(파일)로 이동하는 메뉴">
+            <h2>바로가기</h2>
+              <ul class="card-grid">
+                
+                  <li><a class="card" href="myClass.html">
+                    <span class="icon" aria-hidden="true">📅</span>
+                    <span class="card-title">나의 수업</span>
+                    <span class="card-file">myClass.html</span>
+                  </a></li>
+                  <li><a class="card" href="myHoliday.html">
+                    <span class="icon" aria-hidden="true">🏖️</span>
+                    <span class="card-title">나의 휴일</span>
+                    <span class="card-file">myHoliday.html</span>
+                  </a></li>
+                  <li><a class="card" href="myProfile.html">
+                    <span class="icon" aria-hidden="true">🙋</span>
+                    <span class="card-title">나의 프로필</span>
+                    <span class="card-file">myProfile.html</span>
+                  </a></li>
+                  <li><a class="card" href="myTrip.html">
+                    <span class="icon" aria-hidden="true">🌏</span>
+                    <span class="card-title">나의 여행</span>
+                    <span class="card-file">myTrip.html</span>
+                  </a></li>
+                  <li><a class="card" href="signUp.html">
+                    <span class="icon" aria-hidden="true">📝</span>
+                    <span class="card-title">회원가입</span>
+                    <span class="card-file">signUp.html</span>
+                  </a></li>
+              </ul>
+          </nav>
+          <section id="news">
+            <h2>📌 오늘의 주요 소식</h2>
+            <article>
+              <h3>[업데이트] 여행 앨범에 동영상 추가 완료!</h3>
+              <p>아이폰 HEVC 영상을 H.264로 변환하여 크로스브라우저 재생 문제를 해결했습니다.
+                이제 어떤 브라우저에서도 브이로그를 감상할 수 있습니다.</p>
+              <!-- time: 기계가 읽는 날짜(datetime) + 사람이 읽는 날짜(내용) 분리 -->
+              <p><time datetime="2026-07-17">2026년 7월 17일</time> 작성</p>
+            </article>
+          </section>
+        
+        </section>
+        
 
-      <!-- 문의 섹션 --->
-      <section id="contact">
-        <h2>문의</h2>
-        <p>
-          더 궁금한 점이 있다면
-          <a href="https://github.com/rkdgml3577" target="_blank" rel="noopener noreferrer">GitHub 프로필</a>로
-          연락해 주세요.
-        </p>
-        <address>Made by rkdgml3577</address>
-      </section>
-    </main>
+        <!-- 과정 소개 섹션: 목록으로 배우는 내용 안내 -->
+        <section id="about">
+          <h2>SKALA에서 배우는 것</h2>
+          <ul>
+            <li>웹 프론트엔드 기초 (HTML · CSS · JavaScript)</li>
+            <li>Git과 GitHub을 활용한 협업</li>
+            <li>AI 실무 역량과 프로젝트 경험</li>
+          </ul>
+        </section>
 
+        <!-- 문의 섹션 --->
+        <section id="contact">
+          <h2>문의</h2>
+          <p>
+            더 궁금한 점이 있다면
+            <a href="https://github.com/rkdgml3577" target="_blank" rel="noopener noreferrer">GitHub 프로필</a>로
+            연락해 주세요.
+          </p>
+          <address>Made by rkdgml3577</address>
+        </section>
+      </main>
+      <aside aria-label="부가 정보">
+        <section class="widget">
+          <h2>⏰ 실시간 정보</h2>
+          <div class="clock" role="status" aria-live="off">
+            <span class="dot" aria-hidden="true"></span>
+            <strong id="clock">--:--:--</strong>
+          </div>
+        </section>
+
+        <!-- [추가 실습] 추천 학습 링크 -->
+        <section class="widget">
+          <h2>📚 추천 학습</h2>
+          <ul>
+            <li><a href="https://developer.mozilla.org/ko/" target="_blank" rel="noopener noreferrer">MDN 웹 문서</a></li>
+            <li><a href="https://www.w3schools.com/" target="_blank" rel="noopener noreferrer">W3Schools</a></li>
+            <li><a href="https://validator.w3.org/" target="_blank" rel="noopener noreferrer">HTML 검사기</a></li>
+          </ul>
+        </section>
+
+        <!-- [추가 실습] 프로젝트 진행 현황 -->
+        <section class="widget">
+          <h2>🚀 프로젝트 현황</h2>
+          <p>완성 페이지 <strong>6 / 6</strong><br />myHoliday 오픈!</p>
+        </section>
+      </aside>
+    </div>
     <!-- 시맨틱 태그: 페이지 하단 영역 -->
     <footer>
       <p>© 2026 SKALA-FRONT · Built by rkdgml3577</p>
@@ -491,7 +564,7 @@
     }
     function startTyping() {
       const typedEl = document.getElementById('typed');
-      const fullText = '환영 인사';
+      const fullText = 'KangHee\'s Universe';
       if (reduceMotion) { typedEl.textContent = fullText; return; }
       typedEl.textContent = '';
       let i = 0;
