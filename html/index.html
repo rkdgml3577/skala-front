@@ -449,37 +449,49 @@
        ============================================================ */
 
     // 모션 최소화를 원하는 사용자인지 확인 (접근성)
+    
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const loadingScreen = document.getElementById('loading');
-const brandScreen = document.getElementById('brand');
-const mainContent = document.getElementById('main-content');
+    const loadingScreen = document.getElementById('loading');
+    const brandScreen = document.getElementById('brand');
+    const mainContent = document.getElementById('main-content');
 
-const LOADING_MS = reduceMotion ? 300 : 2800;
-const BRAND_MS = reduceMotion ? 300 : 2000;
+    // URL에 ?skipIntro=1 이 있으면 인트로 건너뛰기
 
-setTimeout(() => {
-  loadingScreen.classList.add('hidden');
-  brandScreen.classList.remove('hidden');
-}, LOADING_MS);
+    const skipIntro = new URLSearchParams(window.location.search).get('skipIntro');
 
-setTimeout(() => {
-  brandScreen.classList.add('hidden');
-  mainContent.classList.add('show');
-  startTyping();
-}, LOADING_MS + BRAND_MS);
+    if (skipIntro) {
+      // 인트로 없이 바로 환영 화면
+      loadingScreen.classList.add('hidden');
+      brandScreen.classList.add('hidden');
+      mainContent.classList.add('show');
+      startTyping();
+    } else {
+      const LOADING_MS = reduceMotion ? 300 : 2800;
+      const BRAND_MS = reduceMotion ? 300 : 2000;
 
-function startTyping() {
-  const typedEl = document.getElementById('typed');
-  const fullText = '환영 인사';
-  if (reduceMotion) { typedEl.textContent = fullText; return; }
-  typedEl.textContent = '';
-  let i = 0;
-  const timer = setInterval(() => {
-    typedEl.textContent += fullText[i];
-    i++;
-    if (i >= fullText.length) clearInterval(timer);
-  }, 180);
-}
+      setTimeout(() => {
+        loadingScreen.classList.add('hidden');
+        brandScreen.classList.remove('hidden');
+      }, LOADING_MS);
+
+      setTimeout(() => {
+        brandScreen.classList.add('hidden');
+        mainContent.classList.add('show');
+        startTyping();
+      }, LOADING_MS + BRAND_MS);
+    }
+    function startTyping() {
+      const typedEl = document.getElementById('typed');
+      const fullText = '환영 인사';
+      if (reduceMotion) { typedEl.textContent = fullText; return; }
+      typedEl.textContent = '';
+      let i = 0;
+      const timer = setInterval(() => {
+        typedEl.textContent += fullText[i];
+        i++;
+        if (i >= fullText.length) clearInterval(timer);
+      }, 180);
+    }
 
     /* ---------- 2) 다크/라이트 테마 토글 ----------
        버튼을 누르면 <html>의 data-theme 값을 바꿔 CSS 변수를 교체. */
