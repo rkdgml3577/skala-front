@@ -214,6 +214,7 @@
       cursor: pointer;
       transition: transform 0.15s ease, box-shadow 0.2s ease;  /* 미션6 정신 계승 */
     }
+    .game-btn + .game-btn { margin-top: 0.6rem; }
     .game-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(123, 92, 255, 0.35); }
     /*  */
     /* ---------- 메인 ---------- */
@@ -544,6 +545,8 @@
         <section class="widget">
           <h2>🎮 미니 게임 천국</h2>
           <button class="game-btn" onclick="startUpDownGame()">업다운 게임 🚀</button>
+          <button class="game-btn" onclick="startGradeCalc()">성적 계산기 📊</button>
+
         </section>
       </aside>
     </div>
@@ -554,6 +557,8 @@
     </div>
   <!-- [과제] Up-Down 게임 스크립트 (script 폴더) -->
   <script src="../script/upDown.js"></script>
+  <script src="../script/grade.js"></script>
+
   <script>
     /* ============================================================
        JavaScript — 페이지에 동적 기능을 추가
