@@ -88,7 +88,23 @@
         </select>
       </div>
     </fieldset>
+    <!-- 자기소개 -->
+    <fieldset>
+      <legend>자기소개</legend>
+      <div class="field">
+        <label for="intro">나를 표현하는 한 줄 소개 또는 가입 인사</label>
+        <!-- textarea -->
+        <textarea id="intro" name="intro" maxlength="200"
+                  placeholder="여기에 내용을 입력하세요 (최대 200자)"></textarea>
+        <div class="counter"><span id="introCount">0</span> / 200</div>
+      </div>
+    </fieldset>
 
+    <!-- submit / reset -->
+    <div class="btn-row">
+      <button type="submit">동의하고 회원가입</button>
+      <button type="reset">다시 작성</button>
+    </div>
   </form>
 </body>
 </html>
