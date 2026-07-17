@@ -44,6 +44,50 @@
         </div>
       </div>
     </fieldset>
+    <!-- 개인 프로필 정보 -->
+    <fieldset>
+      <legend>개인 프로필 정보</legend>
+
+      <div class="field">
+        <label for="name">이름</label>
+        <input type="text" id="name" name="name" placeholder="홍길동" />
+      </div>
+
+      <div class="field">
+        <label for="birth">생년월일</label>
+        <input type="date" id="birth" name="birth" />
+      </div>
+
+      <div class="field">
+        <label>성별</label>
+        <div class="options">
+          <label class="opt"><input type="radio" name="gender" value="male" checked /> 남성</label>
+          <label class="opt"><input type="radio" name="gender" value="female" /> 여성</label>
+          <label class="opt"><input type="radio" name="gender" value="none" /> 선택안함</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>관심 분야 (중복 선택 가능)</label>
+        <div class="checks">
+          <label class="opt"><input type="checkbox" name="interest" value="frontend" /> 웹 프론트엔드 (Vue.js/HTML)</label>
+          <label class="opt"><input type="checkbox" name="interest" value="uiux" /> UI/UX 디자인 표준</label>
+          <label class="opt"><input type="checkbox" name="interest" value="backend" /> 백엔드 &amp; 데이터베이스</label>
+          <label class="opt"><input type="checkbox" name="interest" value="cloud" /> 클라우드 &amp; 인프라</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="route">가입 경로</label>
+        <select name="route" id="route">
+          <option value="">-- 선택해 주세요 --</option>
+          <option value="search">검색엔진</option>
+          <option value="sns">SNS</option>
+          <option value="friend">지인 추천</option>
+          <option value="etc">기타</option>
+        </select>
+      </div>
+    </fieldset>
 
   </form>
 </body>
