@@ -127,6 +127,14 @@
       gap: 1rem;
       list-style: none;   /* ul 점 제거 */
     }
+    .card .icon { font-size: 2rem; display: block; margin-bottom: 0.6rem; }
+    .card .card-title { font-weight: 700; font-size: 1.05rem; }
+    .card .card-file {
+      display: block; margin-top: 0.3rem;
+      font-size: 0.8rem; color: var(--accent-2); font-family: monospace;
+    }
+    /* 아직 없는 페이지 표시 */
+    .card.pending .card-file::after { content: " (준비 중)"; color: var(--text-dim); }
     /* a 태그를 카드처럼 */
     .card {
       display: block;
@@ -304,9 +312,22 @@
         <h2>바로가기</h2>
           <ul>
             <div class="card-grid">
-              <a class="card" href="myClass.html">나의 수업</a>
-              <a class="card" href="myHoliday.html">나의 휴일</a>
-              <a class="card" href="myProfile.html">나의 프로필</a>
+              <a class="card" href="myClass.html">
+                <span class="icon" aria-hidden="true">📅</span>
+                <span class="card-title">나의 수업</span>
+                <span class="card-file">myClass.html</span>
+              </a>
+              <!-- myHoliday.html은 아직 미생성 → pending 클래스로 표시 -->
+              <a class="card pending" href="myHoliday.html">
+                <span class="icon" aria-hidden="true">🏖️</span>
+                <span class="card-title">나의 휴일</span>
+                <span class="card-file">myHoliday.html</span>
+              </a>
+              <a class="card" href="myProfile.html">
+                <span class="icon" aria-hidden="true">🙋</span>
+                <span class="card-title">나의 프로필</span>
+                <span class="card-file">myProfile.html</span>
+              </a>
             </div>
           </ul>
 </section>
