@@ -6,14 +6,14 @@
 // [기본] 게임 전체를 함수로 포장 → 버튼 클릭 시에만 실행 (자동 실행 방지)
 function startUpDownGame() {
   // [기본] 컴퓨터의 비밀 숫자: 0~49 난수에 +1 → 1~50
-  var computerNum = Math.floor(Math.random() * 50) + 1;
+  let computerNum = Math.floor(Math.random() * 50) + 1;
 
-  var tryCount = 0;      // [기본] 시도 횟수 카운터
-  var isCorrect = false; // 정답 여부 플래그 (while 종료 조건)
+  let tryCount = 0;      // [기본] 시도 횟수 카운터
+  let isCorrect = false; // 정답 여부 플래그 (while 종료 조건)
 
   // [기본] 맞출 때까지 반복 (while 실습)
   while (!isCorrect) {
-    var input = prompt("1부터 50 사이의 숫자 중 컴퓨터가 생각한 숫자는 무엇일까요?");
+    let input = prompt("1부터 50 사이의 숫자 중 컴퓨터가 생각한 숫자는 무엇일까요?");
 
     // [추가 실습] 취소(null) 처리 — 없으면 prompt 무한 반복 발생!
     if (input === null) {
@@ -22,7 +22,7 @@ function startUpDownGame() {
     }
 
     // [기본+추가] prompt는 문자열 반환 → 숫자로 명시 변환
-    var userNum = parseInt(input, 10);
+    let userNum = parseInt(input, 10);
 
     // [추가 실습] 숫자가 아닌 입력(빈값, 문자) 방어
     if (isNaN(userNum)) {
