@@ -50,6 +50,19 @@
       figure { opacity: 1; transform: none; transition: none; }
     }
     figure img, figure video { width: 100%; height: auto; display: block; }
+    figure img { cursor: zoom-in; transition: transform 0.4s ease; }
+    figure img:hover { transform: scale(1.03); }
+    .lightbox {
+      position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.9);
+      display: flex; align-items: center; justify-content: center; padding: 2rem;
+      opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .lightbox.open { opacity: 1; visibility: visible; }
+    .lightbox img { max-width: 90%; max-height: 85%; border-radius: 12px; }
+    .lightbox .close {
+      position: absolute; top: 1.5rem; right: 2rem; font-size: 2rem;
+      color: #fff; cursor: pointer; background: none; border: none;
+    }
     figcaption { padding: 0.9rem 1.1rem; color: var(--text-dim); font-size: 0.95rem; }
     figcaption strong { color: var(--text); }
     .player {
@@ -111,16 +124,16 @@
             <h2>📷 여행 사진</h2>
             <!-- 필수: img -->
             <figure>
-            <img src="../media/lijiang.jpg" alt="리장 호도협의 설산과 계곡 풍경" />
-            <figcaption><strong>리장 호도협</strong> (2025년)</figcaption>
+            <img src="../media/paris.jpg" alt="파리의 길거리 풍경" />
+            <figcaption><strong>파리</strong> (2018년)</figcaption>
             </figure>
             <figure>
-            <img src="../media/cebu-night.jpg" alt="세부 탑스힐에서 내려다본 야경" />
-            <figcaption><strong>세부 탑스힐</strong> (2024년)</figcaption>
+            <img src="../media/cambodia.jpg" alt="캄보디아 공항 도착 사진" />
+            <figcaption><strong>캄보디아</strong> (2023년)</figcaption>
             </figure>
             <figure>
-            <img src="../media/hokkaido.jpg" alt="홋카이도 대설산의 눈 덮인 풍경" />
-            <figcaption><strong>홋카이도 대설산</strong> (2025년)</figcaption>
+            <img src="../media/kyoto.jpg" alt="교토의 길거리 풍경" />
+            <figcaption><strong>교토</strong> (2024년)</figcaption>
             </figure>
         </section>
 
@@ -133,13 +146,17 @@
                 <source src="../media/travel-video.mp4" type="video/mp4" />
                 이 브라우저는 비디오 재생을 지원하지 않습니다.
             </video>
-            <figcaption><strong>리장 여행 브이로그</strong> 🎼</figcaption>
+            <figcaption><strong>태국 여행 브이로그</strong> 🎼</figcaption>
             </figure>
         </section>
 
         <footer>
             <p><a href="index.html?skipIntro=1">← 홈으로 돌아가기</a></p>
         </footer>
+    </div>
+    <div class="lightbox" id="lightbox">
+        <button class="close" id="lightboxClose" aria-label="닫기">✕</button>
+        <img id="lightboxImg" src="" alt="확대 이미지" />
     </div>
 <script>
     const audio = document.getElementById('audio');
@@ -178,6 +195,20 @@
       const rect = seek.getBoundingClientRect();
       audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
     });
+    // 사진 라이트박스
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    document.querySelectorAll('figure img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('open');
+      });
+    });
+    function closeLightbox() { lightbox.classList.remove('open'); }
+    document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
   </script>
 </body>
 </html>
