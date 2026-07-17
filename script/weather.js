@@ -100,6 +100,5 @@ citySelect.addEventListener("change", function () {
     weatherBox.innerHTML = '<p class="weather-hint">도시를 선택하면 정보가 표시됩니다.</p>';
     return;
   }
-
   loadWeather(cities[index]);
 });
