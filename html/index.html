@@ -14,6 +14,11 @@
 
   <title>Welcome SKALA</title>
   <link rel="stylesheet" href="../css/style.css" />
+  <script>
+    if (new URLSearchParams(location.search).get('skipIntro')) {
+      document.documentElement.classList.add('skip-intro');
+    }
+  </script>
   <style>
     /* ============================================================
        디자인 토큰 — CSS 변수로 색을 한 곳에서 관리
@@ -60,6 +65,9 @@
   transition: opacity 0.8s ease, visibility 0.8s ease;
 }
 .screen.hidden { opacity: 0; visibility: hidden; }
+
+html.skip-intro .screen { display: none !important; }
+html.skip-intro #main-content { opacity: 1; }
 
 #loading .logo-sk {
   font-size: 3.5rem; font-weight: 800; letter-spacing: 0.05em;
@@ -610,15 +618,15 @@
 
     const skipIntro = new URLSearchParams(window.location.search).get('skipIntro');
 
-    if (skipIntro) {
+    if (skipIntro|| reduceMotion) {
       // 인트로 없이 바로 환영 화면
       loadingScreen.classList.add('hidden');
       brandScreen.classList.add('hidden');
       mainContent.classList.add('show');
       startTyping();
     } else {
-      const LOADING_MS = reduceMotion ? 300 : 2800;
-      const BRAND_MS = reduceMotion ? 300 : 2000;
+      const LOADING_MS = 2800;
+      const BRAND_MS = 2000;
 
       setTimeout(() => {
         loadingScreen.classList.add('hidden');
