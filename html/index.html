@@ -42,8 +42,16 @@
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    body {
-      .screen {
+    body {font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: background 0.5s ease, color 0.5s ease;
+      line-height: 1.6;
+    }
+.screen {
   position: fixed; inset: 0; z-index: 100;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
@@ -100,16 +108,13 @@
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
-      #main-content { min-height: 100vh; display: flex; flex-direction: column; }
-      font-family: var(--font);
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      transition: background 0.5s ease, color 0.5s ease;
-      line-height: 1.6;
-    }
+#main-content { 
+  min-height: 100vh; display: flex; flex-direction: column;
+  opacity: 0; transition: opacity 1s ease; 
+}
+#main-content.show { opacity: 1; }
+
+      
 
     /* 배경에 은은하게 흐르는 그라디언트 (시그니처) */
     body::before {
@@ -445,21 +450,36 @@
 
     // 모션 최소화를 원하는 사용자인지 확인 (접근성)
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const loadingScreen = document.getElementById('loading');
+const brandScreen = document.getElementById('brand');
+const mainContent = document.getElementById('main-content');
 
-    /* ---------- 1) h1 타이핑 애니메이션 ----------
-       "환영 인사"를 한 글자씩 찍어서 등장시킴.
-       모션 최소화 사용자에게는 즉시 전체 텍스트를 보여줌. */
-    const typedEl = document.getElementById('typed');
-    const fullText = '환영 인사';
-    if (!reduceMotion) {
-      typedEl.textContent = '';          // 비우고 시작
-      let i = 0;
-      const timer = setInterval(() => {
-        typedEl.textContent += fullText[i];
-        i++;
-        if (i >= fullText.length) clearInterval(timer);  // 다 찍으면 멈춤
-      }, 180);
-    }
+const LOADING_MS = reduceMotion ? 300 : 2800;
+const BRAND_MS = reduceMotion ? 300 : 2000;
+
+setTimeout(() => {
+  loadingScreen.classList.add('hidden');
+  brandScreen.classList.remove('hidden');
+}, LOADING_MS);
+
+setTimeout(() => {
+  brandScreen.classList.add('hidden');
+  mainContent.classList.add('show');
+  startTyping();
+}, LOADING_MS + BRAND_MS);
+
+function startTyping() {
+  const typedEl = document.getElementById('typed');
+  const fullText = '환영 인사';
+  if (reduceMotion) { typedEl.textContent = fullText; return; }
+  typedEl.textContent = '';
+  let i = 0;
+  const timer = setInterval(() => {
+    typedEl.textContent += fullText[i];
+    i++;
+    if (i >= fullText.length) clearInterval(timer);
+  }, 180);
+}
 
     /* ---------- 2) 다크/라이트 테마 토글 ----------
        버튼을 누르면 <html>의 data-theme 값을 바꿔 CSS 변수를 교체. */
