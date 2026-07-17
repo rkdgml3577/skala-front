@@ -69,15 +69,10 @@
 html.skip-intro .screen { display: none !important; }
 html.skip-intro #main-content { opacity: 1; }
 
-#loading .logo-sk {
-  font-size: 3.5rem; font-weight: 800; letter-spacing: 0.05em;
-  color: #fff; margin-bottom: 3rem;
-  display: flex; align-items: center; gap: 0.2rem;
-}
-.logo-sk .mark {
-  display: inline-block; width: 0; height: 0;
-  border-top: 20px solid transparent; border-bottom: 20px solid transparent;
-  border-left: 30px solid #fff; margin-left: 6px; transform: skewX(-8deg);
+#loading .loading-logo {
+    width: 180px;            /* 원본 348px — 340px 이상 확대 금지(흐려짐) */
+    height: auto;
+    margin-bottom: 3rem;     /* 프로그레스 바와의 간격 (기존 값 계승) */
 }
 .progress-track {
   width: min(70vw, 900px); height: 12px;
@@ -102,12 +97,12 @@ html.skip-intro #main-content { opacity: 1; }
   margin-bottom: 1rem; opacity: 0;
   animation: fadeInUp 0.8s ease 0.2s forwards;
 }
-#brand .skala {
-  font-size: clamp(4rem, 15vw, 11rem); font-weight: 800;
-  letter-spacing: 0.02em; color: #fff; line-height: 1;
-  opacity: 0; animation: fadeInUp 1s ease 0.4s forwards;
-}
-#brand .skala .accent { color: #7b5cff; }
+#brand .brand-logo {
+      width: min(70vw, 560px);     /* 화면의 70%, 최대 560px (기존 clamp 감각 유지) */
+      height: auto;
+      opacity: 0;
+      animation: fadeInUp 1s ease 0.4s forwards;   /* 타이밍도 기존과 동일 */
+    }
 #brand .caption {
   margin-top: 1rem; font-size: 1.5rem; font-weight: 700;
   color: var(--text-dim); letter-spacing: 0.3em;
@@ -439,16 +434,15 @@ html.skip-intro #main-content { opacity: 1; }
 </head>
 <body>
   <div class="screen" id="loading">
-    <div class="logo-sk">SK<span class="mark" aria-hidden="true"></span></div>
+    <img class="loading-logo" src="../media/sk.png" alt="SK" />
     <div class="progress-track">
       <div class="progress-fill"></div>
     </div>
     <p class="tagline">AI 시대, 미래 인재로 성장하는 길</p>
   </div>
   <div class="screen hidden" id="brand">
-    <p class="subtitle">SK그룹 채용연계과정</p>
-    <div class="skala">S<span class="accent">K</span>ALA</div>
-    <p class="caption">SK AI</p>
+    <img class="brand-logo" src="../media/skala.png"
+    alt="SKALA — SK AI Leader Academy" />
   </div>
   <div id ="main-content">
     <!-- 시맨틱 태그: 페이지 상단 영역 -->
