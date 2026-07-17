@@ -204,7 +204,17 @@
     .widget a { color: var(--accent-2); text-decoration: none; }
     .widget a:hover { text-decoration: underline; }
     .widget p { color: var(--text-dim); font-size: 0.9rem; }
-    
+    /* [과제] 게임 시작 버튼 — 기존 그라디언트 시그니처 재활용 */
+    .game-btn {
+      width: 100%;
+      padding: 0.7rem 1rem;
+      border: none; border-radius: 10px;
+      background: linear-gradient(120deg, #7b5cff, var(--accent-2));
+      color: #fff; font: inherit; font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.2s ease;  /* 미션6 정신 계승 */
+    }
+    .game-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(123, 92, 255, 0.35); }
     /*  */
     /* ---------- 메인 ---------- */
     
@@ -317,6 +327,7 @@
       padding: 2rem;
       margin-top: 1.5rem;
     }
+    #news { margin-top: 0; }
     h2 {
       font-size: 1.5rem;
       margin-bottom: 1rem;
@@ -429,7 +440,7 @@
 
     <!-- 시맨틱 태그: 핵심 콘텐츠 영역 -->      
     <!-- 환영 섹션 -->
-    <div id="welcome" class="hero" aria-label="환영 및 바로가기">
+    <section id="welcome" class="hero" aria-label="환영">
       <p class="eyebrow">SK AI Academy</p>
 
       <!-- [기본 요구사항] h1 "환영 인사" -->
@@ -437,6 +448,9 @@
 
       <!-- [기본 요구사항] 본문 p -->
       <p class="lead">저의 프로필, 학습, 여행을 모아둔 Hub 페이지입니다</p>
+    </section>
+    <section id="shortcut" class="hero" aria-label="바로가기">
+      
       <nav class="shortcuts" aria-label="다른 페이지(파일)로 이동하는 메뉴">
             <h2>바로가기</h2>
               <ul class="card-grid">
@@ -468,7 +482,7 @@
                   </a></li>
               </ul>
       </nav>
-    </div>
+    </section>
     <div class = "layout">
       <main>
         <section id="news">
@@ -527,6 +541,10 @@
           <h2>🚀 프로젝트 현황</h2>
           <p>완성 페이지 <strong>6 / 6</strong><br />myHoliday 오픈!</p>
         </section>
+        <section class="widget">
+          <h2>🎮 미니 게임 천국</h2>
+          <button class="game-btn" onclick="startUpDownGame()">업다운 게임 🚀</button>
+        </section>
       </aside>
     </div>
     <!-- 시맨틱 태그: 페이지 하단 영역 -->
@@ -534,6 +552,8 @@
       <p>© 2026 SKALA-FRONT · Built by rkdgml3577</p>
     </footer>
     </div>
+  <!-- [과제] Up-Down 게임 스크립트 (script 폴더) -->
+  <script src="../script/upDown.js"></script>
   <script>
     /* ============================================================
        JavaScript — 페이지에 동적 기능을 추가
