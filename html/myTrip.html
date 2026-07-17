@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>나의 여행지 · SKALA</title>
+</head>
+<body>
+  <header>
+    <h1>🌏 나의 여행 앨범 🎵</h1>
+    <p>사진, 음악, 영상으로 담은 나의 여행 기록입니다.</p>
+
+    <!-- 필수: audio + source -->
+    <audio controls>
+      <source src="../media/travel-music.mp3" type="audio/mpeg" />
+      이 브라우저는 오디오 재생을 지원하지 않습니다.
+    </audio>
+  </header>
+
+  <!-- 사진 갤러리 -->
+  <section>
+    <h2>📷 여행 사진</h2>
+    <!-- 필수: img -->
+    <figure>
+      <img src="../media/lijiang.jpg" alt="리장 호도협의 설산과 계곡 풍경" />
+      <figcaption><strong>리장 호도협</strong> (2025년)</figcaption>
+    </figure>
+    <figure>
+      <img src="../media/cebu-night.jpg" alt="세부 탑스힐에서 내려다본 야경" />
+      <figcaption><strong>세부 탑스힐</strong> (2024년)</figcaption>
+    </figure>
+    <figure>
+      <img src="../media/hokkaido.jpg" alt="홋카이도 대설산의 눈 덮인 풍경" />
+      <figcaption><strong>홋카이도 대설산</strong> (2025년)</figcaption>
+    </figure>
+  </section>
+
+  <!-- 비디오 -->
+  <section>
+    <h2>🎬 나의 여행 브이로그</h2>
+    <!-- 필수: video + source -->
+    <figure>
+      <video controls poster="../media/video-thumb.jpg">
+        <source src="../media/travel-video.mp4" type="video/mp4" />
+        이 브라우저는 비디오 재생을 지원하지 않습니다.
+      </video>
+      <figcaption><strong>리장 여행 브이로그</strong> 🎼</figcaption>
+    </figure>
+  </section>
+
+  <footer>
+    <p><a href="index.html?skipIntro=1">← 홈으로 돌아가기</a></p>
+  </footer>
+</body>
+</html>
